@@ -225,8 +225,8 @@ section { padding: 72px 20px; }
 .hero__weekday {
   margin-top: 8px;
   font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-  letter-spacing: 0.5em;
-  text-indent: 0.5em;
+  letter-spacing: 0.25em;
+  text-indent: 0.25em;
   opacity: 0.9;
 }
 .hero__scroll {
