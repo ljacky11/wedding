@@ -8,12 +8,8 @@ const CONFIG = {
 
   // 相簿照片：把照片放進 images/ 資料夾，然後在這裡列出檔名
   photos: [
-    { src: "images/photo1.jpg", caption: "第一次相遇" },
-    { src: "images/photo2.jpg", caption: "一起旅行" },
-    { src: "images/photo3.jpg", caption: "求婚那天" },
-    { src: "images/photo4.jpg", caption: "訂婚" },
-    { src: "images/photo5.jpg", caption: "日常時光" },
-    { src: "images/photo6.jpg", caption: "永遠" },
+    { src: "images/photo1.jpg", caption: "我們的故事" },
+    { src: "images/photo2.jpg", caption: "永遠在一起" },
   ],
 };
 
