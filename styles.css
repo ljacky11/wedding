@@ -279,6 +279,19 @@ section { padding: 72px 20px; }
 }
 
 /* ===== 相簿 ===== */
+.gallery__tagline {
+  text-align: center;
+  color: var(--rose-dark);
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+.gallery__tagline--sub {
+  font-size: clamp(1rem, 4vw, 1.35rem);
+  color: var(--ink);
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
