@@ -249,3 +249,20 @@ if ("serviceWorker" in navigator) {
     showHint("已複製喜帖連結 ♡");
   });
 })();
+
+/* ---------- 出席回覆 (RSVP) ----------
+   把 index.html 裡 #rsvpBtn 的 href 從 "#" 換成 Google 表單網址後，
+   這段會自動啟用按鈕並隱藏提示文字。 */
+(function rsvp() {
+  const btn = document.getElementById("rsvpBtn");
+  const note = document.getElementById("rsvpNote");
+  if (!btn) return;
+
+  const href = btn.getAttribute("href");
+  const ready = href && href !== "#";
+
+  if (ready) {
+    btn.removeAttribute("aria-disabled");
+    if (note) note.hidden = true;
+  }
+})();
