@@ -65,12 +65,53 @@ section { padding: 72px 20px; }
 }
 .hero__content { position: relative; z-index: 2; }
 .hero__eyebrow {
-  font-size: 1rem;
-  letter-spacing: 0.4em;
-  text-indent: 0.4em;
-  opacity: 0.95;
-  margin-bottom: 18px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  opacity: 0.9;
+  margin-bottom: 24px;
 }
+
+/* 囍字徽章：姓氏 卜 囍 詹 */
+.hero__crest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 5vw, 34px);
+  margin-bottom: 22px;
+}
+.hero__double-happiness {
+  font-size: clamp(5rem, 22vw, 9.5rem);
+  line-height: 1;
+  color: #fff;
+  /* 金色描邊 + 柔和光暈，喜氣藝術感 */
+  text-shadow:
+    0 0 1px var(--gold),
+    0 0 18px rgba(201, 139, 139, 0.75),
+    0 0 42px rgba(185, 154, 107, 0.55),
+    0 6px 30px rgba(0, 0, 0, 0.35);
+  animation: crestGlow 4s ease-in-out infinite;
+}
+@keyframes crestGlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+.hero__surname {
+  font-size: clamp(1.6rem, 7vw, 3rem);
+  line-height: 1;
+  color: #fff;
+  opacity: 0.92;
+  width: 1.7em;
+  height: 1.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
 .hero__names {
   font-family: "Great Vibes", cursive;
   font-weight: 400;
@@ -89,9 +130,29 @@ section { padding: 72px 20px; }
 }
 .hero__names-zh .amp-zh { margin: 0 0.15em; font-weight: 400; opacity: 0.85; }
 .hero__date {
-  margin-top: 18px;
-  font-size: clamp(1rem, 4vw, 1.4rem);
-  letter-spacing: 0.15em;
+  margin-top: 22px;
+  font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+  letter-spacing: 0.2em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+/* 日期兩側的細裝飾線 */
+.hero__date::before,
+.hero__date::after {
+  content: "";
+  display: inline-block;
+  width: clamp(28px, 8vw, 56px);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.hero__date-dot { color: var(--gold); }
+.hero__weekday {
+  margin-top: 8px;
+  font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  opacity: 0.9;
 }
 .hero__scroll {
   display: inline-block;
