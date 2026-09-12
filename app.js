@@ -363,3 +363,49 @@ if ("serviceWorker" in navigator) {
   render();
   start();
 })();
+
+/* ---------- 電子喜帖 QR code ---------- */
+(function inviteQr() {
+  const box = document.getElementById("inviteQr");
+  if (!box || typeof qrcode === "undefined") return;
+
+  const url = window.location.href.split("#")[0];
+  try {
+    const qr = qrcode(0, "M"); // type 0 = 自動版本，M = 中等容錯
+    qr.addData(url);
+    qr.make();
+    // cellSize 4、margin 0（外框留白由 CSS padding 處理）
+    box.innerHTML = qr.createImgTag(4, 0);
+    const img = box.querySelector("img");
+    if (img) img.alt = "婚禮網站 QR code";
+  } catch (e) {
+    box.style.display = "none";
+  }
+})();
+
+/* ---------- 加入行事曆 ---------- */
+(function addToCalendar() {
+  const link = document.getElementById("addCalendar");
+  if (!link) return;
+
+  // 婚禮起訖時間（午宴 12:00，抓 3 小時）
+  const start = CONFIG.weddingDate;
+  const end = new Date(start.getTime() + 3 * 60 * 60 * 1000);
+
+  // Google Calendar 需要 UTC 格式：YYYYMMDDTHHMMSSZ
+  const fmt = (d) =>
+    d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+
+  const title = "卜弘祥 & 詹岳玲 婚禮";
+  const details = "誠摯邀請您一同見證我們的幸福時刻 ♡";
+  const location = "皇家薇庭婚宴會館 桃園市桃園區莊敬路二段369號";
+
+  const gcal =
+    "https://www.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + encodeURIComponent(title) +
+    "&dates=" + fmt(start) + "/" + fmt(end) +
+    "&details=" + encodeURIComponent(details) +
+    "&location=" + encodeURIComponent(location);
+
+  link.setAttribute("href", gcal);
+})();

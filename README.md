@@ -15,6 +15,7 @@ wedding/
 ├─ app.js            # 倒數、相簿、安裝提示（★設定都在最上面）
 ├─ manifest.json     # PWA 設定（App 名稱、圖示、顏色）
 ├─ sw.js             # Service Worker（離線快取）
+├─ vendor/           # 第三方函式庫（qrcode.min.js，產生喜帖 QR code）
 ├─ icons/            # App 圖示（icon.svg + 192 / 512 / maskable PNG）
 └─ images/           # 你的照片放這裡
 ```

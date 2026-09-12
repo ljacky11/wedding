@@ -170,10 +170,14 @@
       <p class="invite__meta">2027.05.16（日）午宴 12:00</p>
       <p class="invite__meta">皇家薇庭婚宴會館</p>
 
+      <div class="invite__qr" id="inviteQr" aria-label="喜帖網址 QR code"></div>
+      <p class="invite__qr-cap">掃描或分享，把喜帖傳給親友</p>
+
       <div class="invite__actions">
         <button class="btn btn--nav" id="shareBtn">📤 一鍵分享喜帖</button>
         <a class="btn btn--line" id="shareLine" href="#" target="_blank" rel="noopener">💬 分享到 LINE</a>
         <button class="btn btn--map" id="copyLink">🔗 複製連結</button>
+        <a class="btn btn--map" id="addCalendar" href="#" target="_blank" rel="noopener">📅 加入行事曆</a>
       </div>
       <p class="invite__hint" id="shareHint" aria-live="polite"></p>
     </div>
@@ -200,6 +204,18 @@
   <footer class="footer">
     <p>弘祥 &amp; 岳玲　·　Hanson &amp; Lynn</p>
     <p>2027.05.16</p>
+
+    <div class="footer__social">
+      <!-- TODO: 把 href 換成新人的 Instagram 網址，例如 https://www.instagram.com/你的帳號 -->
+      <a class="footer__social-link" id="igLink" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5.5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+
     <a href="#top" class="footer__top">回到頂端 ↑</a>
   </footer>
 
@@ -218,6 +234,7 @@
     <button id="installDismiss" class="install-tip__dismiss" aria-label="關閉">✕</button>
   </div>
 
+  <script src="vendor/qrcode.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
