@@ -383,6 +383,99 @@ section { padding: 72px 20px; }
   margin-top: 32px;
 }
 
+/* ===== 新人的話 ===== */
+.words { background: var(--cream); }
+.words__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.words__card {
+  background: #fff;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.words__card::before {
+  content: "\201C";
+  position: absolute;
+  top: 6px;
+  left: 18px;
+  font-size: 3rem;
+  color: var(--rose);
+  opacity: 0.35;
+  line-height: 1;
+}
+.words__role {
+  color: var(--rose-dark);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+.words__text {
+  line-height: 2;
+  color: var(--ink);
+  white-space: pre-line;
+}
+
+/* ===== 電子喜帖 ===== */
+.invite { background: #fff; }
+.invite__card {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 40px 28px;
+  text-align: center;
+  background: linear-gradient(160deg, #fff, var(--cream));
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+.invite__hd {
+  font-size: 3.4rem;
+  color: var(--festive-red);
+  line-height: 1;
+  margin-bottom: 14px;
+  text-shadow: 0 2px 10px rgba(200, 16, 46, 0.3);
+}
+.invite__line {
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.invite__names {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+  margin: 18px 0 10px;
+  letter-spacing: 0.1em;
+}
+.invite__meta {
+  color: var(--ink);
+  font-size: 0.98rem;
+  margin-bottom: 2px;
+}
+.invite__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+.btn--line {
+  background: #06c755;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.invite__hint {
+  margin-top: 14px;
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  color: var(--rose-dark);
+}
+
 /* ===== 頁尾 ===== */
 .footer {
   text-align: center;

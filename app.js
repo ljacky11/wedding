@@ -187,3 +187,65 @@ if ("serviceWorker" in navigator) {
     tip.hidden = false;
   }
 })();
+
+/* ---------- 電子喜帖分享 ---------- */
+(function invite() {
+  const shareBtn = document.getElementById("shareBtn");
+  const shareLine = document.getElementById("shareLine");
+  const copyBtn = document.getElementById("copyLink");
+  const hint = document.getElementById("shareHint");
+  if (!shareBtn) return;
+
+  // 分享內容：標題、訊息、網址（網址用目前頁面，部署後就是線上網址）
+  const shareUrl = window.location.href.split("#")[0];
+  const shareTitle = "卜弘祥 & 詹岳玲 的婚禮邀請";
+  const shareText =
+    "誠摯邀請您一同見證我們的幸福時刻 ♡\n2027.05.16（日）午宴 12:00\n皇家薇庭婚宴會館";
+
+  function showHint(msg) {
+    hint.textContent = msg;
+    if (msg) setTimeout(() => (hint.textContent = ""), 2600);
+  }
+
+  // 一鍵分享：優先用手機原生分享面板（含 LINE、訊息、AirDrop 等）
+  shareBtn.addEventListener("click", async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: shareTitle, text: shareText, url: shareUrl });
+      } catch (e) {
+        // 使用者取消分享，不需處理
+      }
+    } else {
+      // 桌面瀏覽器沒有原生分享：退回複製連結
+      copyToClipboard();
+      showHint("此裝置不支援一鍵分享，已複製連結給你 ♡");
+    }
+  });
+
+  // 分享到 LINE：官方分享連結
+  const lineHref =
+    "https://line.me/R/msg/text/?" +
+    encodeURIComponent(shareText + "\n" + shareUrl);
+  shareLine.setAttribute("href", lineHref);
+
+  // 複製連結
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      return true;
+    } catch (e) {
+      // 後備：用舊方法選取複製
+      const t = document.createElement("textarea");
+      t.value = shareUrl;
+      document.body.appendChild(t);
+      t.select();
+      try { document.execCommand("copy"); } catch (_) {}
+      document.body.removeChild(t);
+      return true;
+    }
+  }
+  copyBtn.addEventListener("click", async () => {
+    await copyToClipboard();
+    showHint("已複製喜帖連結 ♡");
+  });
+})();
