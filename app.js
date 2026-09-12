@@ -10,6 +10,7 @@ const CONFIG = {
   photos: [
     { src: "images/photo1.jpg", caption: "我們的故事" },
     { src: "images/photo2.jpg", caption: "永遠在一起" },
+    { src: "images/photo3.jpg", caption: "攜手未來" },
   ],
 };
 
