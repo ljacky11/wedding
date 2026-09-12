@@ -55,7 +55,7 @@ section { padding: 72px 20px; }
   color: #fff;
   background:
     linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
-    url("images/hero.jpg") center/cover no-repeat,
+    url("images/hero.jpg") center 20% / cover no-repeat,
     linear-gradient(135deg, #c98b8b, #b99a6b);
   padding: 20px;
 }
