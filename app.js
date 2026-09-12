@@ -21,6 +21,7 @@ const CONFIG = {
 /* ---------- 倒數計時 ---------- */
 (function countdown() {
   const el = {
+    weeks: document.getElementById("weeks"),
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
     minutes: document.getElementById("minutes"),
@@ -42,7 +43,9 @@ const CONFIG = {
     }
 
     const sec = Math.floor(diff / 1000);
-    el.days.textContent = Math.floor(sec / 86400);
+    const totalDays = Math.floor(sec / 86400);
+    el.weeks.textContent = Math.floor(totalDays / 7);
+    el.days.textContent = totalDays % 7;
     el.hours.textContent = pad(Math.floor((sec % 86400) / 3600));
     el.minutes.textContent = pad(Math.floor((sec % 3600) / 60));
     el.seconds.textContent = pad(sec % 60);

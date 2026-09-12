@@ -13,7 +13,10 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: "Noto Serif TC", serif;
+  /* 系統內建優雅中文字體：宋體/襯線優先，黑體後備，各平台都有 */
+  font-family: "Songti TC", "Songti SC", "PingFang TC", "PingFang SC",
+    "Microsoft JhengHei", "Microsoft YaHei", "Noto Serif CJK TC",
+    "Noto Sans CJK TC", "PMingLiU", serif;
   color: var(--ink);
   background: var(--cream);
   line-height: 1.7;
