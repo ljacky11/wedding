@@ -15,8 +15,7 @@ wedding/
 ├─ app.js            # 倒數、相簿、安裝提示（★設定都在最上面）
 ├─ manifest.json     # PWA 設定（App 名稱、圖示、顏色）
 ├─ sw.js             # Service Worker（離線快取）
-├─ make_icons.py     # 產生圖示的小工具
-├─ icons/            # App 圖示（192 / 512 / maskable）
+├─ icons/            # App 圖示（icon.svg + 192 / 512 / maskable PNG）
 └─ images/           # 你的照片放這裡
 ```
 
@@ -53,13 +52,11 @@ const CONFIG = {
 
 ### 3. （選用）換 App 圖示
 
-預設圖示是「玫瑰底 + 白色愛心」。想換顏色或重畫，改 `make_icons.py` 後執行：
+目前圖示是「紅底金色囍字」。想換的話，改 `icons/icon.svg`（向量，最清晰），
+再把自己的圖示覆蓋 `icons/` 裡的三個 PNG（`icon-192.png`、`icon-512.png`、
+`icon-maskable-512.png`，保持同檔名與尺寸）即可。
 
-```bash
-python3 make_icons.py
-```
-
-或直接把自己的圖示覆蓋 `icons/` 裡的三個 PNG（保持同檔名與尺寸）。
+> 提醒：手機上已經「加到主畫面」的舊圖示不會自動更新，需要移除後重新加一次。
 
 ---
 
