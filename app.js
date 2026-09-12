@@ -12,6 +12,17 @@ const CONFIG = {
     { src: "images/photo2.jpg", caption: "永遠在一起" },
     { src: "images/photo3.jpg", caption: "攜手未來" },
   ],
+
+  // 婚紗寫真輪播：把婚紗照放進 images/ 後在這裡列出檔名即可（可放任意張數）
+  // 先預留佔位，之後把 src 換成真正的婚紗照檔名（例如 "images/wedding1.jpg"）
+  weddingPhotos: [
+    { src: "images/wedding1.jpg" },
+    { src: "images/wedding2.jpg" },
+    { src: "images/wedding3.jpg" },
+  ],
+
+  // 輪播自動切換秒數
+  carouselIntervalSec: 4,
 };
 
 /* =========================================================
@@ -265,4 +276,90 @@ if ("serviceWorker" in navigator) {
     btn.removeAttribute("aria-disabled");
     if (note) note.hidden = true;
   }
+})();
+
+/* ---------- 婚紗照輪播 ---------- */
+(function carousel() {
+  const track = document.getElementById("carouselTrack");
+  const dotsWrap = document.getElementById("carouselDots");
+  const viewport = document.getElementById("carouselViewport");
+  const prev = document.getElementById("carouselPrev");
+  const next = document.getElementById("carouselNext");
+  if (!track || !CONFIG.weddingPhotos || !CONFIG.weddingPhotos.length) return;
+
+  const slides = CONFIG.weddingPhotos;
+  let index = 0;
+  let timer = null;
+
+  // 動態產生投影片與圓點
+  slides.forEach((photo, i) => {
+    const slide = document.createElement("div");
+    slide.className = "carousel__slide";
+
+    const ph = document.createElement("div");
+    ph.className = "carousel__slide-ph";
+    ph.textContent = "婚紗照 " + (i + 1);
+    slide.appendChild(ph);
+
+    const img = document.createElement("img");
+    img.alt = "婚紗照 " + (i + 1);
+    img.loading = "lazy";
+    // 載入成功才顯示圖片，失敗則保留漸層佔位
+    img.addEventListener("load", () => ph.remove());
+    img.addEventListener("error", () => img.remove());
+    img.src = photo.src;
+    slide.appendChild(img);
+
+    track.appendChild(slide);
+
+    const dot = document.createElement("button");
+    dot.className = "carousel__dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("aria-label", "第 " + (i + 1) + " 張");
+    dot.addEventListener("click", () => go(i, true));
+    dotsWrap.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsWrap.children);
+
+  function render() {
+    track.style.transform = "translateX(" + -index * 100 + "%)";
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+  }
+  function go(i, userAction) {
+    index = (i + slides.length) % slides.length;
+    render();
+    if (userAction) restart();
+  }
+  function step(n) { go(index + n, true); }
+
+  function start() {
+    if (slides.length <= 1) return;
+    timer = setInterval(
+      () => go(index + 1, false),
+      (CONFIG.carouselIntervalSec || 4) * 1000
+    );
+  }
+  function restart() { clearInterval(timer); start(); }
+
+  prev.addEventListener("click", () => step(-1));
+  next.addEventListener("click", () => step(1));
+
+  // 觸控滑動
+  let startX = null;
+  viewport.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    startX = null;
+  });
+
+  // 分頁切走時暫停，回來再繼續（省電）
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) clearInterval(timer);
+    else restart();
+  });
+
+  render();
+  start();
 })();

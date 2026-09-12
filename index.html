@@ -27,7 +27,8 @@
   <header class="hero" id="top">
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <p class="hero__eyebrow">我 們 結 婚 了</p>
+      <p class="hero__eyebrow">時光恰好　你我剛好</p>
+      <p class="hero__eyebrow-sub">願以餘生　共赴一場溫柔</p>
 
       <div class="hero__crest" aria-label="卜 囍 詹">
         <span class="hero__surname hero__surname--l">卜</span>
@@ -63,6 +64,18 @@
     <h2 class="section-title">我們的故事</h2>
     <p class="section-subtitle">點擊照片可放大瀏覽</p>
     <div class="gallery__grid" id="galleryGrid"><!-- 由 app.js 動態產生 --></div>
+  </section>
+
+  <!-- 婚紗照輪播 -->
+  <section class="carousel" id="carousel">
+    <h2 class="section-title">婚紗寫真</h2>
+    <p class="section-subtitle">記錄下最美的我們</p>
+    <div class="carousel__viewport" id="carouselViewport">
+      <div class="carousel__track" id="carouselTrack"><!-- 由 app.js 依 CONFIG.weddingPhotos 動態產生 --></div>
+      <button class="carousel__arrow carousel__arrow--prev" id="carouselPrev" aria-label="上一張">‹</button>
+      <button class="carousel__arrow carousel__arrow--next" id="carouselNext" aria-label="下一張">›</button>
+    </div>
+    <div class="carousel__dots" id="carouselDots" aria-label="輪播指示器"></div>
   </section>
 
   <!-- 婚禮資訊 -->
