@@ -44,11 +44,30 @@ const CONFIG = {
 
     const sec = Math.floor(diff / 1000);
     const totalDays = Math.floor(sec / 86400);
-    el.weeks.textContent = Math.floor(totalDays / 7);
-    el.days.textContent = totalDays % 7;
-    el.hours.textContent = pad(Math.floor((sec % 86400) / 3600));
-    el.minutes.textContent = pad(Math.floor((sec % 3600) / 60));
-    el.seconds.textContent = pad(sec % 60);
+    const weeks = Math.floor(totalDays / 7);
+    const days = totalDays % 7;
+    const hours = Math.floor((sec % 86400) / 3600);
+    const minutes = Math.floor((sec % 3600) / 60);
+    const seconds = sec % 60;
+
+    el.weeks.textContent = weeks;
+    el.days.textContent = days;
+    el.hours.textContent = pad(hours);
+    el.minutes.textContent = pad(minutes);
+    el.seconds.textContent = pad(seconds);
+
+    // 強調「目前最大且不為 0」的單位（例如還有幾週就強調週）
+    const order = [
+      [weeks, el.weeks],
+      [days, el.days],
+      [hours, el.hours],
+      [minutes, el.minutes],
+      [seconds, el.seconds],
+    ];
+    const lead = (order.find(([v]) => v > 0) || order[order.length - 1])[1];
+    order.forEach(([, node]) => {
+      node.closest(".countdown__unit").classList.toggle("is-lead", node === lead);
+    });
   }
 
   tick();
