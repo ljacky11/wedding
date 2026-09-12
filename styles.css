@@ -78,6 +78,15 @@ section { padding: 72px 20px; }
   text-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 .hero__names .amp { font-size: 0.6em; opacity: 0.9; }
+.hero__names-zh {
+  margin-top: 6px;
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  font-weight: 600;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.28);
+}
+.hero__names-zh .amp-zh { margin: 0 0.15em; font-weight: 400; opacity: 0.85; }
 .hero__date {
   margin-top: 18px;
   font-size: clamp(1rem, 4vw, 1.4rem);
