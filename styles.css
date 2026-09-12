@@ -13,9 +13,9 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* 第一優先：馬善政毛筆楷書（網路字體，font-display:swap，載入不到自動退回系統楷體） */
+  /* 第一優先：霞鶩文楷 TC（繁體手寫楷體，網路字體，font-display:swap，載入不到自動退回系統楷體） */
   /* fallback：iOS/Mac 楷體 → Windows 標楷體 → Android/其他 Noto → 通用 serif */
-  font-family: "Ma Shan Zheng", "Kaiti TC", "Kaiti SC", "DFKai-SB",
+  font-family: "LXGW WenKai TC", "Kaiti TC", "DFKai-SB",
     "Songti TC", "PingFang TC", "Microsoft JhengHei",
     "Noto Serif CJK TC", "Noto Sans CJK TC", serif;
   color: var(--ink);
