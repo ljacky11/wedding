@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>我們的婚禮 · Our Wedding</title>
+  <meta name="description" content="誠摯邀請您參加我們的婚禮" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#c98b8b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="我們的婚禮" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <link rel="icon" type="image/png" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 英雄區 -->
+  <header class="hero" id="top">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">我們結婚了</p>
+      <h1 class="hero__names">Hanson <span class="amp">&amp;</span> Lynn</h1>
+      <p class="hero__date">2027 · 05 · 16　星期日</p>
+      <a class="hero__scroll" href="#countdown" aria-label="往下捲動">︾</a>
+    </div>
+  </header>
+
+  <!-- 倒數計時 -->
+  <section class="countdown" id="countdown">
+    <h2 class="section-title">距離婚禮還有</h2>
+    <div class="countdown__grid" id="countdownGrid" role="timer" aria-live="polite">
+      <div class="countdown__unit"><span class="countdown__num" id="days">--</span><span class="countdown__label">天</span></div>
+      <div class="countdown__unit"><span class="countdown__num" id="hours">--</span><span class="countdown__label">時</span></div>
+      <div class="countdown__unit"><span class="countdown__num" id="minutes">--</span><span class="countdown__label">分</span></div>
+      <div class="countdown__unit"><span class="countdown__num" id="seconds">--</span><span class="countdown__label">秒</span></div>
+    </div>
+    <p class="countdown__done" id="countdownDone" hidden>今天是我們的大喜之日 ♡</p>
+  </section>
+
+  <!-- 相簿 -->
+  <section class="gallery" id="gallery">
+    <h2 class="section-title">我們的故事</h2>
+    <p class="section-subtitle">點擊照片可放大瀏覽</p>
+    <div class="gallery__grid" id="galleryGrid"><!-- 由 app.js 動態產生 --></div>
+  </section>
+
+  <!-- 婚禮資訊 -->
+  <section class="info" id="info">
+    <h2 class="section-title">婚禮資訊</h2>
+    <div class="info__cards">
+      <div class="info__card">
+        <h3>時間</h3>
+        <p>2027 年 5 月 16 日（星期日）</p>
+        <p>午宴 12:00 入席</p>
+      </div>
+      <div class="info__card">
+        <h3>地點</h3>
+        <p>幸福大飯店 3 樓宴會廳</p>
+        <p>台北市中山區幸福路 100 號</p>
+        <a class="info__map" href="https://maps.google.com/?q=台北市中山區幸福路100號" target="_blank" rel="noopener">在地圖上開啟 →</a>
+      </div>
+      <div class="info__card">
+        <h3>穿著</h3>
+        <p>正式 / 半正式</p>
+        <p>歡迎穿上你最美的樣子</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Hanson &amp; Lynn　·　2027.05.16</p>
+    <a href="#top" class="footer__top">回到頂端 ↑</a>
+  </footer>
+
+  <!-- 燈箱 -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__btn lightbox__close" id="lbClose" aria-label="關閉">✕</button>
+    <button class="lightbox__btn lightbox__prev" id="lbPrev" aria-label="上一張">‹</button>
+    <img class="lightbox__img" id="lbImg" alt="" />
+    <button class="lightbox__btn lightbox__next" id="lbNext" aria-label="下一張">›</button>
+  </div>
+
+  <!-- 加到主畫面提示 -->
+  <div class="install-tip" id="installTip" hidden>
+    <span id="installText">把這個網站加到手機主畫面，隨時打開 ♡</span>
+    <button id="installBtn" class="install-tip__btn">加到主畫面</button>
+    <button id="installDismiss" class="install-tip__dismiss" aria-label="關閉">✕</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

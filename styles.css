@@ -1,0 +1,286 @@
+/* ===== 基礎設定 ===== */
+:root {
+  --rose: #c98b8b;
+  --rose-dark: #a86b6b;
+  --cream: #faf6f2;
+  --ink: #4a3f3a;
+  --gold: #b99a6b;
+  --shadow: 0 10px 30px rgba(74, 63, 58, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Serif TC", serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+section { padding: 72px 20px; }
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: var(--gold);
+  margin: 16px auto 0;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--rose-dark);
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+}
+
+/* ===== 英雄區 ===== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background:
+    linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
+    url("images/hero.jpg") center/cover no-repeat,
+    linear-gradient(135deg, #c98b8b, #b99a6b);
+  padding: 20px;
+}
+.hero__content { position: relative; z-index: 2; }
+.hero__eyebrow {
+  font-size: 1rem;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  opacity: 0.95;
+  margin-bottom: 18px;
+}
+.hero__names {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-size: clamp(3.2rem, 14vw, 6.5rem);
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+.hero__names .amp { font-size: 0.6em; opacity: 0.9; }
+.hero__date {
+  margin-top: 18px;
+  font-size: clamp(1rem, 4vw, 1.4rem);
+  letter-spacing: 0.15em;
+}
+.hero__scroll {
+  display: inline-block;
+  margin-top: 48px;
+  color: #fff;
+  font-size: 1.6rem;
+  text-decoration: none;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ===== 倒數計時 ===== */
+.countdown { background: #fff; }
+.countdown__grid {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 4vw, 36px);
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.countdown__unit {
+  min-width: 84px;
+  padding: 22px 14px;
+  background: var(--cream);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.countdown__num {
+  display: block;
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  font-weight: 600;
+  color: var(--rose-dark);
+  font-variant-numeric: tabular-nums;
+}
+.countdown__label {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+}
+.countdown__done {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 1.3rem;
+  color: var(--rose-dark);
+}
+
+/* ===== 相簿 ===== */
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.gallery__item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #eee;
+  box-shadow: var(--shadow);
+}
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+.gallery__item:hover img { transform: scale(1.08); }
+
+/* ===== 資訊區 ===== */
+.info { background: #fff; }
+.info__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.info__card {
+  background: var(--cream);
+  padding: 32px 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.info__card h3 {
+  color: var(--rose-dark);
+  letter-spacing: 0.2em;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.info__card p { margin-bottom: 4px; }
+.info__map {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ===== 頁尾 ===== */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: var(--rose);
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+.footer__top {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+/* ===== 燈箱 ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 15, 13, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.lightbox[hidden] { display: none; }
+.lightbox__img {
+  max-width: 92vw;
+  max-height: 86vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.lightbox__btn {
+  position: absolute;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox__btn:hover { background: rgba(255,255,255,0.3); }
+.lightbox__close { top: 20px; right: 20px; font-size: 1.3rem; }
+.lightbox__prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: 16px; top: 50%; transform: translateY(-50%); }
+
+/* ===== 安裝提示 ===== */
+.install-tip {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: min(92%, 460px);
+  background: #fff;
+  color: var(--ink);
+  padding: 14px 44px 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 120;
+  font-size: 0.9rem;
+}
+.install-tip[hidden] { display: none; }
+.install-tip__btn {
+  flex-shrink: 0;
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+.install-tip__dismiss {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  section { padding: 56px 16px; }
+}
