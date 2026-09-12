@@ -13,10 +13,11 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* 系統內建優雅中文字體：宋體/襯線優先，黑體後備，各平台都有 */
-  font-family: "Songti TC", "Songti SC", "PingFang TC", "PingFang SC",
-    "Microsoft JhengHei", "Microsoft YaHei", "Noto Serif CJK TC",
-    "Noto Sans CJK TC", "PMingLiU", serif;
+  /* 第一優先：馬善政毛筆楷書（網路字體，font-display:swap，載入不到自動退回系統楷體） */
+  /* fallback：iOS/Mac 楷體 → Windows 標楷體 → Android/其他 Noto → 通用 serif */
+  font-family: "Ma Shan Zheng", "Kaiti TC", "Kaiti SC", "DFKai-SB",
+    "Songti TC", "PingFang TC", "Microsoft JhengHei",
+    "Noto Serif CJK TC", "Noto Sans CJK TC", serif;
   color: var(--ink);
   background: var(--cream);
   line-height: 1.7;
