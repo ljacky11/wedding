@@ -419,6 +419,34 @@ section { padding: 72px 20px; }
 
 /* ===== 資訊區 ===== */
 .info { background: #fff; }
+/* 會館照片：兩張並排，窄螢幕自動堆疊 */
+.info__venue {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+.info__venue-item {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #eee;
+}
+.info__venue-item img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+.info__venue-item figcaption {
+  padding: 12px;
+  text-align: center;
+  color: var(--rose-dark);
+  letter-spacing: 0.12em;
+  background: #fff;
+}
 .info__cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -510,6 +538,14 @@ section { padding: 72px 20px; }
 .transport__text strong {
   color: var(--rose-dark);
   margin-right: 8px;
+}
+.transport__link {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
 }
 .transport__cta {
   text-align: center;
