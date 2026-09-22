@@ -538,6 +538,7 @@ section { padding: 72px 20px; }
 /* 精簡清單：每種交通一行 */
 .transport__list {
   list-style: none;
+  width: 100%;
   max-width: 560px;
   margin: 0 auto;
   background: #fff;
@@ -562,6 +563,8 @@ section { padding: 72px 20px; }
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .transport__text strong {
   color: var(--rose-dark);
