@@ -4,7 +4,7 @@
 const CONFIG = {
   // 婚禮日期時間（格式：年, 月-1, 日, 時, 分）
   // 注意：月份從 0 開始，5 月要寫 4
-  weddingDate: new Date(2027, 4, 16, 12, 0, 0),
+  weddingDate: new Date(2027, 4, 15, 12, 0, 0),
 
   // 相簿照片：把照片放進 images/ 資料夾，然後在這裡列出檔名
   photos: [
@@ -211,7 +211,7 @@ if ("serviceWorker" in navigator) {
   const shareUrl = window.location.href.split("#")[0];
   const shareTitle = "卜弘祥 & 詹岳玲 的婚禮邀請";
   const shareText =
-    "誠摯邀請您一同見證我們的幸福時刻 ♡\n2027.05.16（日）午宴 12:00\n皇家薇庭婚宴會館";
+    "誠摯邀請您一同見證我們的幸福時刻 ♡\n2027.05.15（六）中午 12:00\n皇家薇庭婚宴會館";
 
   function showHint(msg) {
     hint.textContent = msg;
