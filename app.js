@@ -193,7 +193,20 @@ if ("serviceWorker" in navigator) {
     window.navigator.standalone === true;
 
   if (isIOS && !isStandalone) {
-    text.textContent = '在 Safari 點下方「分享」→「加入主畫面」即可安裝 ♡';
+    // iOS 分享圖示（方框 + 向上箭頭）與「加入主畫面」加號圖示，
+    // 讓不熟悉的人能對照手機上的按鈕，快速找到。
+    const shareIcon =
+      '<svg class="tip-ico" viewBox="0 0 24 24" width="18" height="18" ' +
+      'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M12 15V3"/><path d="M8 7l4-4 4 4"/>' +
+      '<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+    const plusIcon =
+      '<svg class="tip-ico" viewBox="0 0 24 24" width="18" height="18" ' +
+      'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+    text.innerHTML =
+      '在 Safari 點下方 ' + shareIcon +
+      ' 分享 → 選 ' + plusIcon + ' 加入主畫面 ♡';
     btn.hidden = true;
     tip.hidden = false;
   }

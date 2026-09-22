@@ -770,8 +770,18 @@ section { padding: 72px 20px; }
   font-size: 0.9rem;
 }
 .install-tip[hidden] { display: none; }
+/* 說明文字裡的圖示（iOS 分享 / 加入主畫面）與文字對齊 */
+.install-tip .tip-ico {
+  display: inline-block;
+  vertical-align: -0.28em;
+  margin: 0 2px;
+  color: var(--rose-dark);
+}
 .install-tip__btn {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: var(--rose);
   color: #fff;
   border: none;
@@ -781,6 +791,7 @@ section { padding: 72px 20px; }
   font-family: inherit;
   font-size: 0.9rem;
 }
+.install-tip__btn .tip-ico { color: #fff; margin: 0; vertical-align: middle; }
 .install-tip__dismiss {
   position: absolute;
   top: 8px;
