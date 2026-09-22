@@ -39,6 +39,7 @@ const CONFIG = {
     seconds: document.getElementById("seconds"),
     grid: document.getElementById("countdownGrid"),
     done: document.getElementById("countdownDone"),
+    title: document.querySelector("#countdown .section-title"),
   };
 
   const pad = (n) => String(n).padStart(2, "0");
@@ -49,6 +50,7 @@ const CONFIG = {
     if (diff <= 0) {
       el.grid.hidden = true;
       el.done.hidden = false;
+      if (el.title) el.title.textContent = "今日大喜";
       clearInterval(timer);
       return;
     }
@@ -421,4 +423,15 @@ if ("serviceWorker" in navigator) {
     "&location=" + encodeURIComponent(location);
 
   link.setAttribute("href", gcal);
+})();
+
+/* ---------- 接駁指示圖（有圖才顯示，避免破圖） ---------- */
+(function shuttleImage() {
+  const fig = document.getElementById("shuttleFig");
+  const img = document.getElementById("shuttleImg");
+  if (!fig || !img) return;
+  img.addEventListener("load", () => { fig.hidden = false; });
+  img.addEventListener("error", () => { fig.hidden = true; });
+  // 若圖片已在快取中且已載入完成
+  if (img.complete && img.naturalWidth > 0) fig.hidden = false;
 })();
