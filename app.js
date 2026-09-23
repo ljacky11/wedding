@@ -89,7 +89,7 @@ const CONFIG = {
     setNum(el.minutes, pad(minutes));
     setNum(el.seconds, pad(seconds));
 
-    // 強調「目前最大且不為 0」的單位（例如還有幾週就強調週）
+    // 由大到小排列的單位；最後一項（秒）永遠保留
     const order = [
       [weeks, el.weeks],
       [days, el.days],
@@ -97,9 +97,15 @@ const CONFIG = {
       [minutes, el.minutes],
       [seconds, el.seconds],
     ];
-    const lead = (order.find(([v]) => v > 0) || order[order.length - 1])[1];
-    order.forEach(([, node]) => {
-      node.closest(".countdown__unit").classList.toggle("is-lead", node === lead);
+
+    // 時間愈接近，前導為 0 的大單位（週、天…）自動移除格子。
+    // 找出第一個「值 > 0」的位置；在它之前、且本身為 0 的大單位就隱藏。
+    let leadIdx = order.findIndex(([v]) => v > 0);
+    if (leadIdx === -1) leadIdx = order.length - 1; // 全部為 0 時保留秒
+    order.forEach(([, node], i) => {
+      const unit = node.closest(".countdown__unit");
+      unit.hidden = i < leadIdx;              // 隱藏前導的 0 單位
+      unit.classList.toggle("is-lead", i === leadIdx); // 強調目前最大單位
     });
   }
 
@@ -454,4 +460,29 @@ if ("serviceWorker" in navigator) {
   img.addEventListener("error", () => { fig.hidden = true; });
   // 若圖片已在快取中且已載入完成
   if (img.complete && img.naturalWidth > 0) fig.hidden = false;
+})();
+
+/* ---------- 捲動進場淡入（各區塊柔和浮現） ---------- */
+(function scrollReveal() {
+  const reduce = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // 對所有主要區塊套用（英雄區維持原狀，不淡入）
+  const targets = document.querySelectorAll("main section, body > section");
+  const secs = targets.length ? targets : document.querySelectorAll("section:not(.hero)");
+  if (reduce || !("IntersectionObserver" in window)) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  secs.forEach((sec) => {
+    if (sec.classList.contains("hero")) return;
+    sec.classList.add("reveal");
+    io.observe(sec);
+  });
 })();

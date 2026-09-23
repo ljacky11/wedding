@@ -43,9 +43,9 @@ section { padding: 72px 20px; }
 .section-title::after {
   content: "";
   display: block;
-  width: 52px;
+  width: 64px;
   height: 2px;
-  background: var(--gold);
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
   margin: 16px auto 0;
 }
 .section-subtitle {
@@ -186,12 +186,16 @@ section { padding: 72px 20px; }
 }
 .hero__names-zh .amp-zh { margin: 0 0.15em; font-weight: 400; opacity: 0.85; }
 .hero__date {
-  margin-top: 22px;
-  font-size: clamp(1.1rem, 4.5vw, 1.6rem);
-  letter-spacing: 0.2em;
+  margin-top: 18px;
+  /* 浪漫花體呈現日期數字 */
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.4rem, 10vw, 4rem);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
   display: inline-flex;
   align-items: center;
-  gap: 0.6em;
+  gap: 0.5em;
+  text-shadow: 0 3px 16px rgba(0,0,0,0.28);
 }
 /* 日期兩側的細裝飾線 */
 .hero__date::before,
@@ -232,6 +236,7 @@ section { padding: 72px 20px; }
   flex-wrap: wrap;
   margin-top: 32px;
 }
+.countdown__unit[hidden] { display: none !important; }
 .countdown__unit {
   min-width: 96px;
   padding: 18px 18px;
@@ -928,4 +933,19 @@ section { padding: 72px 20px; }
   .invite__names { font-size: 1.4rem; }
   .invite__hd { font-size: 3rem; }
   .rsvp__list { font-size: 0.98rem; }
+}
+
+/* ===== 捲動進場淡入（提升質感） ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
