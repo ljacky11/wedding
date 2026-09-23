@@ -24,6 +24,8 @@ body {
     "Songti TC", "PingFang TC", "Microsoft JhengHei",
     "Noto Serif CJK TC", "Noto Sans CJK TC", serif;
   color: var(--ink);
+  /* 全域預設：文字填色跟隨 color，避免任何元素誤繼承囍字的透明填色而變全白 */
+  -webkit-text-fill-color: currentColor;
   background: var(--cream);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
@@ -247,11 +249,11 @@ section { padding: 72px 20px; }
   font-size: clamp(2rem, 9vw, 3.4rem);
   font-weight: 600;
   color: var(--rose-dark);
+  /* 明確指定，避免繼承到封面囍字的透明填色而讓數字消失 */
+  -webkit-text-fill-color: currentColor;
   font-variant-numeric: tabular-nums;
   line-height: 1;
   display: inline-block;
-  transform-origin: center;
-  backface-visibility: hidden;
 }
 /* 選項 A：經典翻牌動畫（數字沿水平軸翻轉） */
 .countdown__unit.is-flip .countdown__num {
@@ -273,12 +275,18 @@ section { padding: 72px 20px; }
 
 /* 強調目前最大的單位 */
 .countdown__unit.is-lead {
-  background: linear-gradient(160deg, #e23b53, var(--festive-red));
+  background-color: var(--festive-red);
   box-shadow: 0 10px 28px rgba(200, 16, 46, 0.4);
   transform: translateY(-6px) scale(1.06);
 }
-.countdown__unit.is-lead .countdown__num { color: #fff; }
-.countdown__unit.is-lead .countdown__label { color: rgba(255, 255, 255, 0.9); }
+.countdown__unit.is-lead .countdown__num {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+.countdown__unit.is-lead .countdown__label {
+  color: rgba(255, 255, 255, 0.9);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
+}
 .countdown__done {
   text-align: center;
   margin-top: 24px;
