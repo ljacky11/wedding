@@ -140,6 +140,7 @@ section { padding: 72px 20px; }
   40%  { opacity: 1; }
   100% { transform: scale(1); opacity: 1; }
 }
+
 @media (max-width: 480px) {
   .hero__double-happiness { -webkit-text-stroke-width: 1.5px; }
 }
@@ -1030,4 +1031,35 @@ section { padding: 72px 20px; }
   color: var(--rose-dark);
   font-size: 0.92rem;
   margin-bottom: 18px;
+}
+
+/* ===== 手機版倒數優化（放最後確保優先） ===== */
+@media (max-width: 600px) {
+  /* 倒數：手機上五格排成一排、整體變矮 */
+  .countdown { padding-top: 28px; padding-bottom: 28px; }
+  .countdown__grid {
+    gap: 4px;
+    margin-top: 20px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 4px;
+  }
+  .countdown__unit {
+    min-width: 0;
+    flex: 1 1 0;
+    padding: 10px 2px;
+    border-radius: 10px;
+    flex-direction: column;
+    gap: 2px;
+    box-shadow: 0 4px 14px rgba(74, 63, 58, 0.1);
+  }
+  .countdown__num {
+    font-size: clamp(1.1rem, 5.5vw, 1.7rem);
+    letter-spacing: -0.02em;
+  }
+  .countdown__label { font-size: 0.68rem; letter-spacing: 0; }
+  .countdown__unit.is-lead { transform: translateY(-3px) scale(1.04); }
 }
