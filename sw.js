@@ -1,5 +1,5 @@
 /* Service Worker：讓婚禮網站可離線瀏覽 */
-const CACHE = "wedding-v40";
+const CACHE = "wedding-v41";
 
 // 核心檔案：改動網站後請把版本號 wedding-v1 改成 v2、v3…以更新快取
 const CORE_ASSETS = [

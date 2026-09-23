@@ -951,6 +951,15 @@ section { padding: 72px 20px; }
   font-size: 1rem;
 }
 
+@media (max-width: 600px) {
+  /* 手機用較小的英雄背景圖，節省流量 */
+  .hero {
+    background:
+      linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
+      url("images/hero-sm.jpg") center 20% / cover no-repeat,
+      linear-gradient(135deg, #c98b8b, #b99a6b);
+  }
+}
 @media (max-width: 480px) {
   section { padding: 56px 16px; }
   .words__card { padding: 44px 20px 26px; }
