@@ -500,7 +500,7 @@ if ("serviceWorker" in navigator) {
 
   let index = 0;
   let timer = null;
-  const INTERVAL = 4000;
+  const INTERVAL = 2000;
 
   // 產生圓點
   for (let i = 0; i < count; i++) {
