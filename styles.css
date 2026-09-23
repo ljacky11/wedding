@@ -249,7 +249,7 @@ section { padding: 72px 20px; }
 }
 
 /* ===== 倒數計時 ===== */
-.countdown { background: #fff; }
+.countdown { background: #fff; padding-top: 36px; padding-bottom: 36px; }
 .countdown__grid {
   display: flex;
   justify-content: center;
@@ -1008,4 +1008,26 @@ section { padding: 72px 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ===== 會館指引（整合：照片 + 交通 + 停車接駁） ===== */
+.guide { background: #fff; }
+.guide__photos { margin-bottom: 40px; }
+.guide__block {
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+.guide__block:last-child { margin-bottom: 0; }
+.guide__subtitle {
+  text-align: center;
+  color: var(--rose-dark);
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+  letter-spacing: 0.1em;
+  margin-bottom: 18px;
+}
+.guide__note {
+  text-align: center;
+  color: var(--rose-dark);
+  font-size: 0.92rem;
+  margin-bottom: 18px;
 }
