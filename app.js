@@ -44,6 +44,26 @@ const CONFIG = {
 
   const pad = (n) => String(n).padStart(2, "0");
 
+  // 只在數字改變時更新，並觸發輕量變動動畫。
+  // 用 animationend 清除 class（不強制 reflow），避免 iOS 長時間累積合成層而 crash。
+  const prefersReduce = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function setNum(node, value) {
+    const str = String(value);
+    if (node.textContent === str) return;
+    node.textContent = str;
+    if (prefersReduce) return;
+    const unit = node.closest(".countdown__unit");
+    if (!unit || document.hidden) return;
+    unit.classList.add("is-flip");
+  }
+  // 動畫結束就移除 class，讓下次變動能重新觸發
+  document.getElementById("countdownGrid")
+    .addEventListener("animationend", (e) => {
+      const unit = e.target.closest && e.target.closest(".countdown__unit");
+      if (unit) unit.classList.remove("is-flip");
+    });
+
   function tick() {
     const diff = CONFIG.weddingDate.getTime() - Date.now();
 
@@ -63,11 +83,11 @@ const CONFIG = {
     const minutes = Math.floor((sec % 3600) / 60);
     const seconds = sec % 60;
 
-    el.weeks.textContent = weeks;
-    el.days.textContent = days;
-    el.hours.textContent = pad(hours);
-    el.minutes.textContent = pad(minutes);
-    el.seconds.textContent = pad(seconds);
+    setNum(el.weeks, weeks);
+    setNum(el.days, days);
+    setNum(el.hours, pad(hours));
+    setNum(el.minutes, pad(minutes));
+    setNum(el.seconds, pad(seconds));
 
     // 強調「目前最大且不為 0」的單位（例如還有幾週就強調週）
     const order = [

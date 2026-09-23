@@ -270,6 +270,21 @@ section { padding: 72px 20px; }
   color: var(--rose-dark);
   font-variant-numeric: tabular-nums;
   line-height: 1;
+  display: inline-block;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+/* 選項 A：經典翻牌動畫（數字沿水平軸翻轉） */
+.countdown__unit.is-flip .countdown__num {
+  animation: numChange 0.4s ease;
+}
+/* 2D 淡入微上移，iOS 安全，不建立 3D 合成層 */
+@keyframes numChange {
+  0%   { opacity: 0.3; transform: translateY(-6px); }
+  100% { opacity: 1;   transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .countdown__unit.is-flip .countdown__num { animation: none; }
 }
 .countdown__label {
   font-size: 0.95rem;
@@ -281,15 +296,10 @@ section { padding: 72px 20px; }
 .countdown__unit.is-lead {
   background: linear-gradient(160deg, #e23b53, var(--festive-red));
   box-shadow: 0 10px 28px rgba(200, 16, 46, 0.4);
-  transform: translateY(-6px) scale(1.08);
-  animation: leadPulse 1.6s ease-in-out infinite;
+  transform: translateY(-6px) scale(1.06);
 }
 .countdown__unit.is-lead .countdown__num { color: #fff; }
 .countdown__unit.is-lead .countdown__label { color: rgba(255, 255, 255, 0.9); }
-@keyframes leadPulse {
-  0%, 100% { transform: translateY(-6px) scale(1.08); }
-  50% { transform: translateY(-9px) scale(1.13); }
-}
 .countdown__done {
   text-align: center;
   margin-top: 24px;
@@ -578,29 +588,62 @@ section { padding: 72px 20px; }
   font-weight: 600;
   white-space: nowrap;
 }
-.transport__shuttle {
+.transport__cta {
+  text-align: center;
+  margin-top: 24px;
+}
+
+/* ===== 停車提醒 ===== */
+.parking { background: #fff; }
+.parking__card {
   max-width: 560px;
-  margin: 20px auto 0;
+  margin: 0 auto;
+  background: var(--cream);
   border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+}
+.parking__points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.parking__points li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 14px;
+  line-height: 1.8;
+  font-size: 0.98rem;
+  overflow-wrap: anywhere;
+}
+.parking__points li::before {
+  content: "🅿";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+.parking__points strong { color: var(--rose-dark); }
+.parking__map {
+  display: inline-flex;
+  margin: 6px 0 4px;
+}
+.parking__fig {
+  margin: 22px 0 0;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
   background: #fff;
 }
-.transport__shuttle[hidden] { display: none; }
-.transport__shuttle img {
-  width: 100%;
-  display: block;
-}
-.transport__shuttle figcaption {
-  padding: 12px;
+.parking__fig[hidden] { display: none; }
+.parking__fig img { width: 100%; display: block; }
+.parking__fig figcaption {
+  padding: 10px;
   text-align: center;
   color: var(--rose-dark);
+  font-size: 0.88rem;
   letter-spacing: 0.1em;
-  font-size: 0.9rem;
-}
-.transport__cta {
-  text-align: center;
-  margin-top: 24px;
 }
 
 /* ===== 新人的話 ===== */
