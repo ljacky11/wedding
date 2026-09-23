@@ -486,3 +486,62 @@ if ("serviceWorker" in navigator) {
     io.observe(sec);
   });
 })();
+
+/* ---------- 場地照片輪播 ---------- */
+(function venueCarousel() {
+  const track = document.getElementById("venueTrack");
+  const dotsWrap = document.getElementById("venueDots");
+  const root = document.getElementById("venueCarousel");
+  if (!track || !dotsWrap || !root) return;
+
+  const slides = track.querySelectorAll(".venue-slide");
+  const count = slides.length;
+  if (count <= 1) return;
+
+  let index = 0;
+  let timer = null;
+  const INTERVAL = 4000;
+
+  // 產生圓點
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement("button");
+    dot.className = "venue-carousel__dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("aria-label", "第 " + (i + 1) + " 張場地照片");
+    dot.addEventListener("click", () => go(i, true));
+    dotsWrap.appendChild(dot);
+  }
+  const dots = Array.from(dotsWrap.children);
+
+  function render() {
+    track.style.transform = "translateX(" + -index * 100 + "%)";
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
+  }
+  function go(i, userAction) {
+    index = (i + count) % count;
+    render();
+    if (userAction) restart();
+  }
+  function start() {
+    timer = setInterval(() => go(index + 1, false), INTERVAL);
+  }
+  function restart() { clearInterval(timer); start(); }
+
+  // 觸控滑動
+  let startX = null;
+  root.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  root.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1), true);
+    startX = null;
+  });
+
+  // 分頁切走時暫停，回來再繼續
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) clearInterval(timer);
+    else restart();
+  });
+
+  render();
+  start();
+})();
