@@ -181,7 +181,11 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-/* ---------- 加到主畫面提示 ---------- */
+/* ---------- 加到主畫面提示 ----------
+   各平台行為：
+   - Android / 桌機 Chrome、Edge：支援 beforeinstallprompt，事件觸發後才顯示可點的按鈕
+   - iOS / iPadOS Safari（含 iOS 上的 Chrome，底層都是 Safari）：不支援自動安裝，改顯示分享教學
+   - 已安裝（standalone）：不顯示 */
 (function installPrompt() {
   const tip = document.getElementById("installTip");
   const text = document.getElementById("installText");
@@ -189,22 +193,38 @@ if ("serviceWorker" in navigator) {
   const dismiss = document.getElementById("installDismiss");
   const DISMISS_KEY = "wedding_install_dismissed";
 
+  if (!tip) return;
   if (localStorage.getItem(DISMISS_KEY)) return;
+
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+  if (isStandalone) return; // 已安裝就不再提示
+
+  // 預設整列隱藏；確定可安裝或需要教學時才顯示
+  tip.hidden = true;
+  btn.hidden = true;
 
   let deferredPrompt = null;
 
-  // Android / Chrome：可直接觸發安裝
+  // 只有支援的瀏覽器（Android/桌機 Chrome、Edge…）會觸發此事件
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    btn.hidden = false;
+    btn.hidden = false;     // 事件就緒後才顯示按鈕，避免點了沒反應
     tip.hidden = false;
+  });
+
+  // 使用者若真的完成安裝，收起提示
+  window.addEventListener("appinstalled", () => {
+    tip.hidden = true;
+    deferredPrompt = null;
   });
 
   btn.addEventListener("click", async () => {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
+    try { await deferredPrompt.userChoice; } catch (_) {}
     deferredPrompt = null;
     tip.hidden = true;
   });
@@ -214,15 +234,11 @@ if ("serviceWorker" in navigator) {
     localStorage.setItem(DISMISS_KEY, "1");
   });
 
-  // iOS Safari：沒有 beforeinstallprompt，改用文字教學
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isStandalone =
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone === true;
-
-  if (isIOS && !isStandalone) {
-    // iOS 分享圖示（方框 + 向上箭頭）與「加入主畫面」加號圖示，
-    // 讓不熟悉的人能對照手機上的按鈕，快速找到。
+  // iOS / iPadOS Safari：沒有 beforeinstallprompt，改用圖示教學
+  const ua = navigator.userAgent;
+  const isIOS = /iphone|ipad|ipod/i.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS 偽裝成 Mac
+  if (isIOS) {
     const shareIcon =
       '<svg class="tip-ico" viewBox="0 0 24 24" width="18" height="18" ' +
       'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
