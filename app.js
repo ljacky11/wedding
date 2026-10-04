@@ -57,7 +57,7 @@ const CONFIG = {
   ],
 
   // 輪播自動切換秒數
-  carouselIntervalSec: 4,
+  carouselIntervalSec: 1.5,
 };
 
 /* =========================================================
