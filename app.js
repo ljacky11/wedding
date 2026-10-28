@@ -301,9 +301,9 @@ if ("serviceWorker" in navigator) {
 
   // 分享內容：標題、訊息、網址（網址用目前頁面，部署後就是線上網址）
   const shareUrl = window.location.href.split("#")[0];
-  const shareTitle = "卜弘祥 & 詹岳玲 的婚禮邀請";
+  const shareTitle = "弘祥 & 岳玲 的婚禮網站";
   const shareText =
-    "誠摯邀請您一同見證我們的幸福時刻 ♡\n2027.05.15（六）中午 12:00\n皇家薇庭婚宴會館";
+    "弘祥 & 岳玲的婚禮資訊都在這裡 ♡\n2027.05.15（六）中午 12:00　皇家薇庭婚宴會館\n交通、停車都有說明，也麻煩一起填寫出席回覆喔：";
 
   function showHint(msg) {
     hint.textContent = msg;

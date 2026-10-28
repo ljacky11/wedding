@@ -71,11 +71,6 @@
           <a class="btn btn--nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E7%9A%87%E5%AE%B6%E8%96%87%E5%BA%AD%20%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80%E8%8E%8A%E6%95%AC%E8%B7%AF%E4%BA%8C%E6%AE%B5369%E8%99%9F&amp;travelmode=driving" target="_blank" rel="noopener">🚗 開始導航</a>
         </div>
       </div>
-      <div class="info__card">
-        <h3>穿著</h3>
-        <p>正式 / 半正式</p>
-        <p>歡迎穿上你最美的樣子</p>
-      </div>
     </div>
   </section>
 
@@ -188,9 +183,7 @@
     <div class="parking__card">
       <ul class="parking__points">
         <li>會館設有停車空間，惟車位有限。</li>
-        <li>車位若不足，可停外場<strong>中路四號社會住宅</strong>（桃園市桃園區崇法街 56-68 號），並提供接駁車往返會館。</li>
-        <li>接駁上車地點：停車場<strong>一樓車道出入口處</strong>。</li>
-        <li>接駁時間（午宴，逾時不候）：<br>去程 <strong>10:00~13:10</strong>、回程 <strong>14:30~16:00</strong>。</li>
+        <li>車位若不足，可停外場<strong>中路四號社會住宅</strong>（桃園市桃園區崇法街 56-68 號），會館提供接駁車往返，上車地點於停車場<strong>一樓車道出入口處</strong>。接駁時間（午宴，逾時不候）：去程 <strong>10:00~13:10</strong>、回程 <strong>14:30~16:00</strong>。</li>
       </ul>
       <a class="btn btn--map parking__map" href="https://maps.app.goo.gl/9tZ7Sx7DyXYhh7Wu5" target="_blank" rel="noopener">📍 外場停車場地圖</a>
       <figure class="parking__fig" id="shuttleFig" hidden>
@@ -227,21 +220,7 @@
     </div>
   </section>
 
-  <!-- 分享婚禮網站 -->
-  <section class="invite" id="invite">
-    <h2 class="section-title">分享婚禮網站</h2>
-    <p class="section-subtitle">掃描 QR code 或一鍵分享，邀請親友一起來看</p>
-    <div class="invite__card">
-      <div class="invite__qr" id="inviteQr" aria-label="婚禮網站 QR code"></div>
-      <p class="invite__qr-cap">掃描 QR code 開啟婚禮網站</p>
-      <div class="invite__actions">
-        <button class="btn btn--nav" id="shareBtn">📤 一鍵分享網站</button>
-        <a class="btn btn--line" id="shareLine" href="#" target="_blank" rel="noopener">💬 分享到 LINE</a>
-        <button class="btn btn--map" id="copyLink">🔗 複製連結</button>
-      </div>
-      <p class="invite__hint" id="shareHint" aria-live="polite"></p>
-    </div>
-  </section>
+
 
   <!-- 出席回覆 (RSVP) -->
   <section class="rsvp" id="rsvp">
@@ -250,7 +229,7 @@
     <div class="rsvp__card">
       <ul class="rsvp__list">
         <li>👥 出席人數（大人）</li>
-        <li>🧒 兒童人數</li>
+        <li>🧒 兒童人數（是否需要兒童椅）</li>
         <li>🍽️ 葷食 / 素食 需求</li>
       </ul>
       <!-- TODO: 建立 Google 表單後，把 href 換成表單的填寫網址（form/d/e/.../viewform 或縮短網址） -->
@@ -258,6 +237,22 @@
         📝 填寫出席回覆
       </a>
       <p class="rsvp__note" id="rsvpNote">（表單建立後，這裡會開啟 Google 表單）</p>
+    </div>
+  </section>
+
+  <!-- 分享給同行的家人朋友（放在出席回覆之後） -->
+  <section class="invite" id="invite">
+    <h2 class="section-title">分享給同行的家人朋友</h2>
+    <p class="section-subtitle">填完出席回覆後，也可以把網站傳給同行的家人或伴侶，<br>讓他們看婚禮資訊、一起填寫回覆</p>
+    <div class="invite__card">
+      <div class="invite__qr" id="inviteQr" aria-label="婚禮網站 QR code"></div>
+      <p class="invite__qr-cap">家人朋友在旁邊？直接讓他掃描 QR code</p>
+      <div class="invite__actions">
+        <button class="btn btn--nav" id="shareBtn">📤 傳給家人 / 伴侶</button>
+        <a class="btn btn--line" id="shareLine" href="#" target="_blank" rel="noopener">💬 分享到 LINE</a>
+        <button class="btn btn--map" id="copyLink">🔗 複製連結</button>
+      </div>
+      <p class="invite__hint" id="shareHint" aria-live="polite"></p>
     </div>
   </section>
 
