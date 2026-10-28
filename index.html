@@ -58,6 +58,9 @@
         <h3>時間</h3>
         <p>2027 年 5 月 15 日（星期六）</p>
         <p>午宴 12:00 入席</p>
+        <div class="info__actions">
+          <a class="btn btn--nav" id="addCalendar" href="#" target="_blank" rel="noopener">📅 加入行事曆</a>
+        </div>
       </div>
       <div class="info__card">
         <h3>地點</h3>
@@ -143,13 +146,6 @@
           </figure>
           <figure class="venue-slide">
             <picture>
-              <source media="(max-width: 600px)" srcset="images/hall-sm.jpg" />
-              <img src="images/hall.jpg" alt="皇家薇庭廳" loading="lazy" />
-            </picture>
-            <figcaption>皇家薇庭廳</figcaption>
-          </figure>
-          <figure class="venue-slide">
-            <picture>
               <source media="(max-width: 600px)" srcset="images/victoria-sm.jpg" />
               <img src="images/victoria.jpg" alt="皇家薇庭 維多利亞廳" loading="lazy" />
             </picture>
@@ -231,26 +227,17 @@
     </div>
   </section>
 
-  <!-- 電子喜帖 / 分享 -->
+  <!-- 分享婚禮網站 -->
   <section class="invite" id="invite">
-    <h2 class="section-title">電子喜帖</h2>
-    <p class="section-subtitle">歡迎把這份喜帖分享給親朋好友</p>
+    <h2 class="section-title">分享婚禮網站</h2>
+    <p class="section-subtitle">掃描 QR code 或一鍵分享，邀請親友一起來看</p>
     <div class="invite__card">
-      <div class="invite__hd">囍</div>
-      <p class="invite__line">誠摯邀請您</p>
-      <p class="invite__line">一同見證我們的幸福時刻</p>
-      <p class="invite__names">卜弘祥 &amp; 詹岳玲</p>
-      <p class="invite__meta">2027.05.15（六）中午 12:00</p>
-      <p class="invite__meta">皇家薇庭婚宴會館</p>
-
-      <div class="invite__qr" id="inviteQr" aria-label="喜帖網址 QR code"></div>
-      <p class="invite__qr-cap">掃描或分享，把喜帖傳給親友</p>
-
+      <div class="invite__qr" id="inviteQr" aria-label="婚禮網站 QR code"></div>
+      <p class="invite__qr-cap">掃描 QR code 開啟婚禮網站</p>
       <div class="invite__actions">
-        <button class="btn btn--nav" id="shareBtn">📤 一鍵分享喜帖</button>
+        <button class="btn btn--nav" id="shareBtn">📤 一鍵分享網站</button>
         <a class="btn btn--line" id="shareLine" href="#" target="_blank" rel="noopener">💬 分享到 LINE</a>
         <button class="btn btn--map" id="copyLink">🔗 複製連結</button>
-        <a class="btn btn--map" id="addCalendar" href="#" target="_blank" rel="noopener">📅 加入行事曆</a>
       </div>
       <p class="invite__hint" id="shareHint" aria-live="polite"></p>
     </div>

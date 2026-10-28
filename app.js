@@ -291,7 +291,7 @@ if ("serviceWorker" in navigator) {
   }
 })();
 
-/* ---------- 電子喜帖分享 ---------- */
+/* ---------- 分享婚禮網站 ---------- */
 (function invite() {
   const shareBtn = document.getElementById("shareBtn");
   const shareLine = document.getElementById("shareLine");
@@ -349,7 +349,7 @@ if ("serviceWorker" in navigator) {
   }
   copyBtn.addEventListener("click", async () => {
     await copyToClipboard();
-    showHint("已複製喜帖連結 ♡");
+    showHint("已複製網站連結 ♡");
   });
 })();
 
@@ -466,7 +466,7 @@ if ("serviceWorker" in navigator) {
   start();
 })();
 
-/* ---------- 電子喜帖 QR code ---------- */
+/* ---------- 婚禮網站 QR code ---------- */
 (function inviteQr() {
   const box = document.getElementById("inviteQr");
   if (!box || typeof qrcode === "undefined") return;
