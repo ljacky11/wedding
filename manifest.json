@@ -1,7 +1,7 @@
 {
-  "name": "我們的婚禮 · Our Wedding",
-  "short_name": "我們的婚禮",
-  "description": "誠摯邀請您參加我們的婚禮",
+  "name": "Hanson & Lynn ｜ 弘祥與岳玲",
+  "short_name": "Hanson & Lynn",
+  "description": "Hanson & Lynn 弘祥與岳玲的婚禮 · 2027.05.15 皇家薇庭",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

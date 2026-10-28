@@ -66,7 +66,7 @@ section { padding: 72px 20px; }
   color: #fff;
   background:
     linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
-    url("images/wed27.jpg") center 40% / cover no-repeat,
+    url("images/hero-wed27.jpg") center 40% / cover no-repeat,
     linear-gradient(135deg, #c98b8b, #b99a6b);
   padding: 20px;
 }
@@ -983,7 +983,7 @@ section { padding: 72px 20px; }
   .hero {
     background:
       linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
-      url("images/wed27-sm.jpg") left 40% / cover no-repeat,
+      url("images/hero-wed27-sm.jpg") var(--hero-m-pos, center top) / cover no-repeat,
       linear-gradient(135deg, #c98b8b, #b99a6b);
   }
 }
