@@ -226,17 +226,15 @@
   <section class="rsvp" id="rsvp">
     <h2 class="section-title">出席回覆</h2>
     <p class="section-subtitle">麻煩您撥空填寫，方便我們安排席位與餐點</p>
-    <div class="rsvp__card">
-      <ul class="rsvp__list">
-        <li>👥 出席人數（大人）</li>
-        <li>🧒 兒童人數（是否需要兒童椅）</li>
-        <li>🍽️ 葷食 / 素食 需求</li>
-      </ul>
-      <!-- TODO: 建立 Google 表單後，把 href 換成表單的填寫網址（form/d/e/.../viewform 或縮短網址） -->
-      <a class="btn btn--nav rsvp__btn" id="rsvpBtn" href="#" target="_blank" rel="noopener" aria-disabled="true">
-        📝 填寫出席回覆
-      </a>
-      <p class="rsvp__note" id="rsvpNote">（表單建立後，這裡會開啟 Google 表單）</p>
+    <div class="rsvp__card rsvp__card--embed">
+      <!-- Google 表單（公開填答網址；請勿放編輯連結） -->
+      <iframe class="rsvp__frame" id="rsvpFrame"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfzGpASo106i8fYh5qJUorqhuu2RPOYFbbv3M7VqH-WJ-oxEw/viewform?embedded=true&amp;hl=zh-TW"
+        title="出席回覆表單" loading="lazy"
+        frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+      <p class="rsvp__note">表單沒有正常顯示？
+        <a id="rsvpBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfzGpASo106i8fYh5qJUorqhuu2RPOYFbbv3M7VqH-WJ-oxEw/viewform?hl=zh-TW" target="_blank" rel="noopener">點這裡在新視窗開啟</a>
+      </p>
     </div>
   </section>
 

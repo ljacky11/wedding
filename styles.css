@@ -1064,3 +1064,26 @@ section { padding: 72px 20px; }
   .countdown__label { font-size: 0.68rem; letter-spacing: 0; }
   .countdown__unit.is-lead { transform: translateY(-3px) scale(1.04); }
 }
+
+/* ===== 出席回覆：嵌入 Google 表單 ===== */
+.rsvp__card--embed {
+  max-width: 680px;
+  padding: 12px 8px 18px;
+  overflow: hidden;
+}
+.rsvp__frame {
+  display: block;
+  width: 100%;
+  height: 4050px;          /* 電腦版：表單完整高度（實測約 3970px），避免框內捲動 */
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+}
+.rsvp__card--embed .rsvp__note { margin-top: 12px; }
+/* 送出後 Google 只顯示一小段感謝頁，把框縮短避免大片空白 */
+.rsvp__frame.is-submitted { height: 520px; }
+.rsvp__card--embed .rsvp__note a { color: var(--rose-dark); font-weight: 600; }
+@media (max-width: 600px) {
+  .rsvp__card--embed { padding: 6px 0 14px; border-radius: 14px; }
+  .rsvp__frame { height: 4200px; }   /* 手機版較窄，題目換行，需要更高 */
+}

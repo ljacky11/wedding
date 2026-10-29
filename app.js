@@ -368,6 +368,20 @@ if ("serviceWorker" in navigator) {
     btn.removeAttribute("aria-disabled");
     if (note) note.hidden = true;
   }
+
+  // 嵌入的 Google 表單：第一次 load 是表單本身；之後再 load 代表已送出（換成感謝頁）
+  // → 縮短框高並把畫面捲回出席回覆區塊頂端，讓賓客看到「已送出」訊息
+  const frame = document.getElementById("rsvpFrame");
+  if (frame) {
+    let loads = 0;
+    frame.addEventListener("load", () => {
+      loads += 1;
+      if (loads > 1) {
+        frame.classList.add("is-submitted");
+        document.getElementById("rsvp").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
 })();
 
 /* ---------- 婚紗照輪播 ---------- */
