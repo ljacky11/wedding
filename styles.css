@@ -64,10 +64,11 @@ section { padding: 72px 20px; }
   justify-content: center;
   text-align: center;
   color: #fff;
+  /* wed02：兩人臉在上方，下方是黑色服裝 → 下半部加深，文字放下面 */
   background:
-    linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
-    url("images/hero-wed27.jpg") center 40% / cover no-repeat,
-    linear-gradient(135deg, #c98b8b, #b99a6b);
+    linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.55) 100%),
+    url("images/hero-wed02.jpg") center top / cover no-repeat,
+    #0d0d0f;
   padding: 20px;
 }
 .hero__content { position: relative; z-index: 2; }
@@ -982,9 +983,13 @@ section { padding: 72px 20px; }
   /* 手機用較小的英雄背景圖，節省流量 */
   .hero {
     background:
-      linear-gradient(rgba(74,63,58,0.35), rgba(74,63,58,0.45)),
-      url("images/hero-wed27-sm.jpg") var(--hero-m-pos, center top) / cover no-repeat,
-      linear-gradient(135deg, #c98b8b, #b99a6b);
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.15) 0,
+        rgba(0,0,0,0) calc(100vw * 0.45),
+        rgba(13,13,15,0.55) calc(100vw * 1.1),
+        #0d0d0f calc(100vw * 1.5)),
+      url("images/hero-wed02-sm.jpg") center top / 100% auto no-repeat,
+      #0d0d0f;
   }
 }
 @media (max-width: 480px) {
@@ -1087,3 +1092,15 @@ section { padding: 72px 20px; }
   .rsvp__card--embed { padding: 6px 0 14px; border-radius: 14px; }
   .rsvp__frame { height: 4200px; }   /* 手機版較窄，題目換行，需要更高 */
 }
+
+/* ===== 封面版面（wed02）：對聯在上、其餘在下，避開臉部 ===== */
+.hero { align-items: stretch; }
+.hero__content {
+  width: 100%;
+  min-height: calc(100svh - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero__couplet { margin-bottom: auto; }   /* 把下面所有內容推到底部 */
+.hero__scroll { margin-top: 18px; }
