@@ -1104,3 +1104,15 @@ section { padding: 72px 20px; }
 }
 .hero__couplet { margin-bottom: auto; }   /* 把下面所有內容推到底部 */
 .hero__scroll { margin-top: 18px; }
+
+/* 會館指引：強調維多利亞廳 */
+.guide__hall { color: var(--festive-red); font-weight: 600; letter-spacing: 0.08em; }
+/* 交通方式：停車列內的接駁細節 */
+.transport__sub { margin-top: 8px; line-height: 1.75; }
+.transport__sub strong { margin-right: 0; }
+.transport__row--parking .transport__link { margin-top: 10px; }
+.transport__row--parking .parking__fig { margin-top: 14px; }
+/* 手機倒數：數字與單位置中（4 格版） */
+@media (max-width: 600px) {
+  .countdown__unit { align-items: center; justify-content: center; }
+}

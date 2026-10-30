@@ -67,7 +67,6 @@ const CONFIG = {
 /* ---------- 倒數計時 ---------- */
 (function countdown() {
   const el = {
-    weeks: document.getElementById("weeks"),
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
     minutes: document.getElementById("minutes"),
@@ -112,13 +111,11 @@ const CONFIG = {
 
     const sec = Math.floor(diff / 1000);
     const totalDays = Math.floor(sec / 86400);
-    const weeks = Math.floor(totalDays / 7);
-    const days = totalDays % 7;
+    const days = totalDays;   // 不用週數，直接以總天數倒數
     const hours = Math.floor((sec % 86400) / 3600);
     const minutes = Math.floor((sec % 3600) / 60);
     const seconds = sec % 60;
 
-    setNum(el.weeks, weeks);
     setNum(el.days, days);
     setNum(el.hours, pad(hours));
     setNum(el.minutes, pad(minutes));
@@ -126,7 +123,6 @@ const CONFIG = {
 
     // 由大到小排列的單位；最後一項（秒）永遠保留
     const order = [
-      [weeks, el.weeks],
       [days, el.days],
       [hours, el.hours],
       [minutes, el.minutes],
@@ -151,6 +147,7 @@ const CONFIG = {
 /* ---------- 相簿 + 燈箱 ---------- */
 (function gallery() {
   const grid = document.getElementById("galleryGrid");
+  if (!grid) return; // 「我們的故事」區塊已移除
   const lb = document.getElementById("lightbox");
   const lbImg = document.getElementById("lbImg");
   const btnClose = document.getElementById("lbClose");
