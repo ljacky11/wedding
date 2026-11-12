@@ -393,7 +393,9 @@ section { padding: 72px 20px; }
 .carousel { background: var(--cream); }
 .carousel__viewport {
   position: relative;
-  max-width: 720px;
+  /* 直式 2:3 框；電腦版限制高度約 80% 螢幕 */
+  width: min(100%, 720px, calc(80vh * 2 / 3));
+  width: min(100%, 720px, calc(80svh * 2 / 3));
   margin: 0 auto;
   border-radius: 18px;
   overflow: hidden;
@@ -407,15 +409,30 @@ section { padding: 72px 20px; }
 .carousel__slide {
   position: relative;
   flex: 0 0 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
   background: linear-gradient(135deg, #e7d3d3, #d9c3a5);
 }
-.carousel__slide picture { display: block; width: 100%; height: 100%; }
+.carousel__slide picture { position: relative; display: block; width: 100%; height: 100%; }
 .carousel__slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* 橫式照片：整張顯示（contain），背後放大小圖當模糊底 + 淡暗層 */
+.carousel__slide--landscape img { object-fit: contain; object-position: center; }
+.carousel__slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.carousel__slide-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(40, 28, 24, 0.25);
 }
 .carousel__slide-ph {
   position: absolute;
@@ -1127,4 +1144,8 @@ section { padding: 72px 20px; }
   .hero__date { font-size: 4.8rem; }
   .hero__weekday { font-size: 1.4rem; }
   .hero__when { padding: 18px 44px 22px; }
+}
+/* 婚紗照輪播：手機版吃滿可用寬度（放在檔尾，避免被基本規則覆蓋） */
+@media (max-width: 600px) {
+  .carousel__viewport { width: 100%; }
 }
