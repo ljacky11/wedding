@@ -36,7 +36,7 @@ const CONFIG = {
   ],
 
   // 輪播自動切換秒數
-  carouselIntervalSec: 2,
+  carouselIntervalSec: 1.5,
 
   // 輪播一開始停在第幾張（從 0 算起；0 = 第一張，6 = 第 7 張）
   carouselStartIndex: 0,
