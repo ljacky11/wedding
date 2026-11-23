@@ -35,10 +35,10 @@ const CONFIG = {
   ],
 
   // 輪播自動切換秒數
-  carouselIntervalSec: 3,
+  carouselIntervalSec: 2,
 
   // 輪播一開始停在第幾張（從 0 算起；0 = 第一張，6 = 第 7 張）
-  carouselStartIndex: 6,
+  carouselStartIndex: 0,
 };
 
 /* =========================================================
@@ -374,6 +374,7 @@ if ("serviceWorker" in navigator) {
   const slides = CONFIG.weddingPhotos;
   let index = Math.min(Math.max(CONFIG.carouselStartIndex || 0, 0), slides.length - 1);
   let timer = null;
+  let inView = false; // 輪播區是否在畫面內：進入畫面才開始自動換張
 
   // 動態產生投影片與圓點
   slides.forEach((photo, i) => {
@@ -434,7 +435,7 @@ if ("serviceWorker" in navigator) {
   function step(n) { go(index + n, true); }
 
   function start() {
-    if (slides.length <= 1) return;
+    if (slides.length <= 1 || !inView) return;
     timer = setInterval(
       () => go(index + 1, false),
       (CONFIG.carouselIntervalSec || 4) * 1000
@@ -466,7 +467,18 @@ if ("serviceWorker" in navigator) {
   render();
   void track.offsetWidth;
   track.style.transition = "";
-  start();
+
+  // 滑到輪播區才開始自動換張，離開畫面就暫停（省電）
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      inView = entries[0].isIntersecting;
+      if (inView) restart();
+      else clearInterval(timer);
+    }, { threshold: 0.4 }).observe(viewport);
+  } else {
+    inView = true;
+    start();
+  }
 })();
 
 /* ---------- 婚禮網站 QR code ---------- */
