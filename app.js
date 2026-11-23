@@ -30,8 +30,7 @@ const CONFIG = {
     { src: "images/pic0180.jpg", small: "images/pic0180-sm.jpg" },
     { src: "images/pic0100.jpg", small: "images/pic0100-sm.jpg" },
     { src: "images/pic0117.jpg", small: "images/pic0117-sm.jpg" },
-    { src: "images/pic0021.jpg", small: "images/pic0021-sm.jpg" },
-    { src: "images/pic0035.jpg", small: "images/pic0035-sm.jpg" },
+    { src: "images/pic0021-0035.jpg", small: "images/pic0021-0035-sm.jpg", landscape: true, bg: "images/pic0021-0035-bg.jpg" }, // 21（男）+ 35（女）併圖
   ],
 
   // 輪播自動切換秒數
