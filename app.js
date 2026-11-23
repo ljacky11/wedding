@@ -15,27 +15,29 @@ const CONFIG = {
 
   // 婚紗寫真輪播：把婚紗照放進 images/ 後在這裡列出檔名即可（可放任意張數）
   // 先預留佔位，之後把 src 換成真正的婚紗照檔名（例如 "images/wedding1.jpg"）
-  // 婚紗寫真輪播：電腦版 src（1200x1800）、手機版 small（800x1200），皆直式 2:3
+  // 婚紗寫真輪播：電腦版 src（1200x1800）、手機版 small（800x1200），皆直式 2:3；檔名 picNNNN = 攝影師原始編號
   // 橫式照片加 landscape: true + bg（32px 小圖當模糊底），整張顯示不裁切
   weddingPhotos: [
-    { src: "images/wed01.jpg", small: "images/wed01-sm.jpg" },
-    { src: "images/wed02.jpg", small: "images/wed02-sm.jpg" },
-    { src: "images/wed03.jpg", small: "images/wed03-sm.jpg" },
-    { src: "images/wed04.jpg", small: "images/wed04-sm.jpg" },
-    { src: "images/wed05.jpg", small: "images/wed05-sm.jpg" },
-    { src: "images/wed06.jpg", small: "images/wed06-sm.jpg" },
-    { src: "images/wed07.jpg", small: "images/wed07-sm.jpg" },
-    { src: "images/wed08.jpg", small: "images/wed08-sm.jpg" },
-    { src: "images/wed09.jpg", small: "images/wed09-sm.jpg" },
-    { src: "images/wed10.jpg", small: "images/wed10-sm.jpg" },
-    { src: "images/wed11.jpg", small: "images/wed11-sm.jpg" },
-    { src: "images/wed12.jpg", small: "images/wed12-sm.jpg" },
-    { src: "images/wed13.jpg", small: "images/wed13-sm.jpg" },
-    { src: "images/wed14.jpg", small: "images/wed14-sm.jpg" },
+    { src: "images/pic0013.jpg", small: "images/pic0013-sm.jpg" },
+    { src: "images/pic0006.jpg", small: "images/pic0006-sm.jpg" },
+    { src: "images/pic0018.jpg", small: "images/pic0018-sm.jpg" },
+    { src: "images/pic0015.jpg", small: "images/pic0015-sm.jpg" },
+    { src: "images/pic0071.jpg", small: "images/pic0071-sm.jpg" },
+    { src: "images/pic0021.jpg", small: "images/pic0021-sm.jpg" },
+    { src: "images/pic0035.jpg", small: "images/pic0035-sm.jpg" },
+    { src: "images/pic0063.jpg", small: "images/pic0063-sm.jpg" },
+    { src: "images/pic0177.jpg", small: "images/pic0177-sm.jpg" },
+    { src: "images/pic0180.jpg", small: "images/pic0180-sm.jpg" },
+    { src: "images/pic0167.jpg", small: "images/pic0167-sm.jpg" },
+    { src: "images/pic0100.jpg", small: "images/pic0100-sm.jpg" },
+    { src: "images/pic0117.jpg", small: "images/pic0117-sm.jpg" },
   ],
 
   // 輪播自動切換秒數
   carouselIntervalSec: 3,
+
+  // 輪播一開始停在第幾張（從 0 算起；0 = 第一張，6 = 第 7 張）
+  carouselStartIndex: 6,
 };
 
 /* =========================================================
@@ -369,7 +371,7 @@ if ("serviceWorker" in navigator) {
   if (!track || !CONFIG.weddingPhotos || !CONFIG.weddingPhotos.length) return;
 
   const slides = CONFIG.weddingPhotos;
-  let index = 0;
+  let index = Math.min(Math.max(CONFIG.carouselStartIndex || 0, 0), slides.length - 1);
   let timer = null;
 
   // 動態產生投影片與圓點
@@ -411,7 +413,7 @@ if ("serviceWorker" in navigator) {
     track.appendChild(slide);
 
     const dot = document.createElement("button");
-    dot.className = "carousel__dot" + (i === 0 ? " is-active" : "");
+    dot.className = "carousel__dot" + (i === index ? " is-active" : "");
     dot.setAttribute("aria-label", "第 " + (i + 1) + " 張");
     dot.addEventListener("click", () => go(i, true));
     dotsWrap.appendChild(dot);
@@ -458,7 +460,11 @@ if ("serviceWorker" in navigator) {
     else restart();
   });
 
+  // 第一次定位不要滑動動畫，直接停在起始那張
+  track.style.transition = "none";
   render();
+  void track.offsetWidth;
+  track.style.transition = "";
   start();
 })();
 
