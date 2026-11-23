@@ -18,19 +18,19 @@ const CONFIG = {
   // 婚紗寫真輪播：電腦版 src（1200x1800）、手機版 small（800x1200），皆直式 2:3；檔名 picNNNN = 攝影師原始編號
   // 橫式照片加 landscape: true + bg（32px 小圖當模糊底），整張顯示不裁切
   weddingPhotos: [
-    { src: "images/pic0013.jpg", small: "images/pic0013-sm.jpg" },
     { src: "images/pic0006.jpg", small: "images/pic0006-sm.jpg" },
     { src: "images/pic0018.jpg", small: "images/pic0018-sm.jpg" },
     { src: "images/pic0015.jpg", small: "images/pic0015-sm.jpg" },
+    { src: "images/pic0013.jpg", small: "images/pic0013-sm.jpg" },
     { src: "images/pic0071.jpg", small: "images/pic0071-sm.jpg" },
-    { src: "images/pic0021.jpg", small: "images/pic0021-sm.jpg" },
-    { src: "images/pic0035.jpg", small: "images/pic0035-sm.jpg" },
     { src: "images/pic0063.jpg", small: "images/pic0063-sm.jpg" },
     { src: "images/pic0177.jpg", small: "images/pic0177-sm.jpg" },
     { src: "images/pic0180.jpg", small: "images/pic0180-sm.jpg" },
     { src: "images/pic0167.jpg", small: "images/pic0167-sm.jpg" },
     { src: "images/pic0100.jpg", small: "images/pic0100-sm.jpg" },
     { src: "images/pic0117.jpg", small: "images/pic0117-sm.jpg" },
+    { src: "images/pic0021.jpg", small: "images/pic0021-sm.jpg" },
+    { src: "images/pic0035.jpg", small: "images/pic0035-sm.jpg" },
   ],
 
   // 輪播自動切換秒數
