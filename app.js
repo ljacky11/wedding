@@ -24,6 +24,7 @@ const CONFIG = {
     { src: "images/pic0013.jpg", small: "images/pic0013-sm.jpg" },
     { src: "images/pic0071.jpg", small: "images/pic0071-sm.jpg" },
     { src: "images/pic0063.jpg", small: "images/pic0063-sm.jpg" },
+    { src: "images/pic0148.jpg", small: "images/pic0148-sm.jpg" },
     { src: "images/pic0177.jpg", small: "images/pic0177-sm.jpg" },
     { src: "images/pic0180.jpg", small: "images/pic0180-sm.jpg" },
     { src: "images/pic0167.jpg", small: "images/pic0167-sm.jpg" },
