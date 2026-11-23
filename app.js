@@ -15,50 +15,27 @@ const CONFIG = {
 
   // 婚紗寫真輪播：把婚紗照放進 images/ 後在這裡列出檔名即可（可放任意張數）
   // 先預留佔位，之後把 src 換成真正的婚紗照檔名（例如 "images/wedding1.jpg"）
-  // 婚紗寫真輪播：電腦版 src（長邊1600）、手機版 small（長邊800）
+  // 婚紗寫真輪播：電腦版 src（1200x1800）、手機版 small（800x1200），皆直式 2:3
   // 橫式照片加 landscape: true + bg（32px 小圖當模糊底），整張顯示不裁切
   weddingPhotos: [
     { src: "images/wed01.jpg", small: "images/wed01-sm.jpg" },
     { src: "images/wed02.jpg", small: "images/wed02-sm.jpg" },
-    { src: "images/wed03.jpg", small: "images/wed03-sm.jpg", landscape: true, bg: "images/wed03-bg.jpg" },
+    { src: "images/wed03.jpg", small: "images/wed03-sm.jpg" },
     { src: "images/wed04.jpg", small: "images/wed04-sm.jpg" },
-    { src: "images/wed05.jpg", small: "images/wed05-sm.jpg", landscape: true, bg: "images/wed05-bg.jpg" },
-    { src: "images/wed06.jpg", small: "images/wed06-sm.jpg", landscape: true, bg: "images/wed06-bg.jpg" },
+    { src: "images/wed05.jpg", small: "images/wed05-sm.jpg" },
+    { src: "images/wed06.jpg", small: "images/wed06-sm.jpg" },
     { src: "images/wed07.jpg", small: "images/wed07-sm.jpg" },
-    { src: "images/wed08.jpg", small: "images/wed08-sm.jpg", landscape: true, bg: "images/wed08-bg.jpg" },
-    { src: "images/wed09.jpg", small: "images/wed09-sm.jpg", landscape: true, bg: "images/wed09-bg.jpg" },
-    { src: "images/wed10.jpg", small: "images/wed10-sm.jpg", landscape: true, bg: "images/wed10-bg.jpg" },
-    { src: "images/wed11.jpg", small: "images/wed11-sm.jpg", landscape: true, bg: "images/wed11-bg.jpg" },
+    { src: "images/wed08.jpg", small: "images/wed08-sm.jpg" },
+    { src: "images/wed09.jpg", small: "images/wed09-sm.jpg" },
+    { src: "images/wed10.jpg", small: "images/wed10-sm.jpg" },
+    { src: "images/wed11.jpg", small: "images/wed11-sm.jpg" },
     { src: "images/wed12.jpg", small: "images/wed12-sm.jpg" },
     { src: "images/wed13.jpg", small: "images/wed13-sm.jpg" },
     { src: "images/wed14.jpg", small: "images/wed14-sm.jpg" },
-    { src: "images/wed15.jpg", small: "images/wed15-sm.jpg" },
-    { src: "images/wed16.jpg", small: "images/wed16-sm.jpg", landscape: true, bg: "images/wed16-bg.jpg" },
-    { src: "images/wed17.jpg", small: "images/wed17-sm.jpg" },
-    { src: "images/wed18.jpg", small: "images/wed18-sm.jpg" },
-    { src: "images/wed19.jpg", small: "images/wed19-sm.jpg" },
-    { src: "images/wed20.jpg", small: "images/wed20-sm.jpg" },
-    { src: "images/wed21.jpg", small: "images/wed21-sm.jpg" },
-    { src: "images/wed22.jpg", small: "images/wed22-sm.jpg", landscape: true, bg: "images/wed22-bg.jpg" },
-    { src: "images/wed23.jpg", small: "images/wed23-sm.jpg" },
-    { src: "images/wed24.jpg", small: "images/wed24-sm.jpg" },
-    { src: "images/wed25.jpg", small: "images/wed25-sm.jpg" },
-    { src: "images/wed26.jpg", small: "images/wed26-sm.jpg" },
-    { src: "images/wed27.jpg", small: "images/wed27-sm.jpg" },
-    { src: "images/wed28.jpg", small: "images/wed28-sm.jpg", landscape: true, bg: "images/wed28-bg.jpg" },
-    { src: "images/wed29.jpg", small: "images/wed29-sm.jpg", landscape: true, bg: "images/wed29-bg.jpg" },
-    { src: "images/wed30.jpg", small: "images/wed30-sm.jpg", landscape: true, bg: "images/wed30-bg.jpg" },
-    { src: "images/wed31.jpg", small: "images/wed31-sm.jpg", landscape: true, bg: "images/wed31-bg.jpg" },
-    { src: "images/wed32.jpg", small: "images/wed32-sm.jpg", landscape: true, bg: "images/wed32-bg.jpg" },
-    { src: "images/wed33.jpg", small: "images/wed33-sm.jpg", landscape: true, bg: "images/wed33-bg.jpg" },
-    { src: "images/wed34.jpg", small: "images/wed34-sm.jpg" },
-    { src: "images/wed35.jpg", small: "images/wed35-sm.jpg", landscape: true, bg: "images/wed35-bg.jpg" },
-    { src: "images/wed36.jpg", small: "images/wed36-sm.jpg", landscape: true, bg: "images/wed36-bg.jpg" },
-    { src: "images/wed37.jpg", small: "images/wed37-sm.jpg", landscape: true, bg: "images/wed37-bg.jpg" },
   ],
 
   // 輪播自動切換秒數
-  carouselIntervalSec: 1.5,
+  carouselIntervalSec: 3,
 };
 
 /* =========================================================
