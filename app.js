@@ -38,6 +38,9 @@ const CONFIG = {
   // 輪播自動切換秒數
   carouselIntervalSec: 1.5,
 
+  // 使用者主動滑動／點箭頭／點圓點後，暫停自動換張的秒數
+  carouselPauseSec: 3,
+
   // 輪播一開始停在第幾張（從 0 算起；0 = 第一張，6 = 第 7 張）
   carouselStartIndex: 0,
 };
@@ -376,7 +379,8 @@ if ("serviceWorker" in navigator) {
   let index = Math.min(Math.max(CONFIG.carouselStartIndex || 0, 0), slides.length - 1);
   let timer = null;
   let inView = false; // 輪播區是否在畫面內：進入畫面才開始自動換張
-  let userStopped = false; // 使用者主動滑動／點箭頭／點圓點後，不再自動換張，停在他選的那張
+  let paused = false; // 使用者主動操作後暫停自動換張（停在他選的那張）一小段時間
+  let resumeTimer = null;
 
   // 動態產生投影片與圓點
   slides.forEach((photo, i) => {
@@ -432,15 +436,20 @@ if ("serviceWorker" in navigator) {
   function go(i, userAction) {
     index = (i + slides.length) % slides.length;
     render();
-    if (userAction) {
-      userStopped = true;
-      clearInterval(timer);
-    }
+    if (userAction) pauseAuto();
+  }
+  // 暫停自動換張，過 carouselPauseSec 秒沒有再操作才恢復
+  function pauseAuto() {
+    paused = true;
+    clearInterval(timer);
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { paused = false; restart(); },
+      (CONFIG.carouselPauseSec || 3) * 1000);
   }
   function step(n) { go(index + n, true); }
 
   function start() {
-    if (slides.length <= 1 || !inView || userStopped) return;
+    if (slides.length <= 1 || !inView || paused) return;
     timer = setInterval(
       () => go(index + 1, false),
       (CONFIG.carouselIntervalSec || 4) * 1000
@@ -453,19 +462,24 @@ if ("serviceWorker" in navigator) {
 
   // 觸控滑動
   let startX = null;
-  // 手指按著時先暫停自動換張；真的左右滑了就停止自動播放（停在使用者選的那張）
+  // 手指按著時先暫停自動換張；真的左右滑了就停在那張，暫停 carouselPauseSec 秒
   viewport.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
     clearInterval(timer);
+    clearTimeout(resumeTimer);
   }, { passive: true });
   viewport.addEventListener("touchend", (e) => {
     if (startX === null) return;
     const dx = e.changedTouches[0].clientX - startX;
     startX = null;
     if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    else if (paused) pauseAuto(); // 還在暫停期間：重新計時
     else restart(); // 只是點一下或上下捲動：照常繼續自動換張
   });
-  viewport.addEventListener("touchcancel", () => { startX = null; restart(); }, { passive: true });
+  viewport.addEventListener("touchcancel", () => {
+    startX = null;
+    if (paused) pauseAuto(); else restart();
+  }, { passive: true });
 
   // 分頁切走時暫停，回來再繼續（省電）
   document.addEventListener("visibilitychange", () => {
