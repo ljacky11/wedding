@@ -67,7 +67,7 @@ section { padding: 72px 20px; }
   /* wed02：兩人臉在上方，下方是黑色服裝 → 下半部加深，文字放下面 */
   background:
     linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.55) 100%),
-    url("images/hero-0117.jpg") 50% -40px / cover no-repeat,
+    url("images/hero-wed02.jpg") center top / cover no-repeat,
     #0d0d0f;
   padding: 20px;
 }
@@ -1014,7 +1014,7 @@ section { padding: 72px 20px; }
         rgba(0,0,0,0) calc(100vw * 0.45),
         rgba(13,13,15,0.55) calc(100vw * 1.1),
         #0d0d0f calc(100vw * 1.5)),
-      url("images/hero-0117-sm.jpg") center top / 100% auto no-repeat,
+      url("images/hero-wed02-sm.jpg") center top / 100% auto no-repeat,
       #0d0d0f;
   }
 }
@@ -1198,5 +1198,14 @@ section { padding: 72px 20px; }
       linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
       linear-gradient(to bottom, transparent 0, #000 16%, #000 48%, transparent 92%);
   }
+}
+/* 出席回覆區：邀請語 */
+.rsvp__invite {
+  max-width: 640px;
+  margin: 14px auto 30px;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink);
 }
 
