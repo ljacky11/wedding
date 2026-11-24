@@ -1096,7 +1096,7 @@ section { padding: 72px 20px; }
 .rsvp__frame {
   display: block;
   width: 100%;
-  height: 4050px;          /* 電腦版：表單完整高度（實測約 3970px），避免框內捲動 */
+  height: 2400px;          /* 電腦版：表單實測約 2150px，多留約 250px 給驗證錯誤提示，避免框內捲動；改題目後需重新量 */
   border: 0;
   border-radius: 12px;
   background: #fff;
@@ -1107,7 +1107,7 @@ section { padding: 72px 20px; }
 .rsvp__card--embed .rsvp__note a { color: var(--rose-dark); font-weight: 600; }
 @media (max-width: 600px) {
   .rsvp__card--embed { padding: 6px 0 14px; border-radius: 14px; }
-  .rsvp__frame { height: 4200px; }   /* 手機版較窄，題目換行，需要更高 */
+  .rsvp__frame { height: 2600px; }   /* 手機版較窄、題目換行：實測約 2300px（寬 360–390），多留約 300px */
 }
 
 /* ===== 封面版面（wed02）：對聯在上、其餘在下，避開臉部 ===== */
