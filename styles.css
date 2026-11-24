@@ -961,8 +961,17 @@ section { padding: 72px 20px; }
   gap: 12px;
   z-index: 120;
   font-size: 0.9rem;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
 }
 .install-tip[hidden] { display: none; }
+/* 往下滑時隱藏，回到最上面再浮現 */
+.install-tip.is-away {
+  opacity: 0;
+  transform: translate(-50%, 16px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
 /* 說明文字裡的圖示（iOS 分享 / 加入主畫面）與文字對齊 */
 .install-tip .tip-ico {
   display: inline-block;

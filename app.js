@@ -222,6 +222,19 @@ if ("serviceWorker" in navigator) {
   tip.hidden = true;
   btn.hidden = true;
 
+  // 提示只在畫面拉到最上面時浮現；往下滑就自動隱藏（is-away），回到最上面再出現
+  const TOP_THRESHOLD = 40; // px
+  let tipTicking = false;
+  function syncTipPosition() {
+    tip.classList.toggle("is-away", window.scrollY > TOP_THRESHOLD);
+  }
+  window.addEventListener("scroll", () => {
+    if (tipTicking) return;
+    tipTicking = true;
+    requestAnimationFrame(() => { tipTicking = false; syncTipPosition(); });
+  }, { passive: true });
+  syncTipPosition();
+
   let deferredPrompt = null;
 
   // 只有支援的瀏覽器（Android/桌機 Chrome、Edge…）會觸發此事件
