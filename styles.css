@@ -67,7 +67,7 @@ section { padding: 72px 20px; }
   /* wed02：兩人臉在上方，下方是黑色服裝 → 下半部加深，文字放下面 */
   background:
     linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.55) 100%),
-    url("images/hero-wed02.jpg") center top / cover no-repeat,
+    url("images/hero-0117.jpg") 50% -40px / cover no-repeat,
     #0d0d0f;
   padding: 20px;
 }
@@ -1014,7 +1014,7 @@ section { padding: 72px 20px; }
         rgba(0,0,0,0) calc(100vw * 0.45),
         rgba(13,13,15,0.55) calc(100vw * 1.1),
         #0d0d0f calc(100vw * 1.5)),
-      url("images/hero-wed02-sm.jpg") center top / 100% auto no-repeat,
+      url("images/hero-0117-sm.jpg") center top / 100% auto no-repeat,
       #0d0d0f;
   }
 }
@@ -1158,3 +1158,45 @@ section { padding: 72px 20px; }
 @media (max-width: 600px) {
   .carousel__viewport { width: 100%; }
 }
+
+/* ===== 出席回覆：照片 0117 當背景浮水印（臉在上方，標題放在照片下半部） ===== */
+.rsvp { position: relative; overflow: hidden; padding-top: 340px; }
+.rsvp::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 760px;
+  height: 520px;
+  margin-left: -380px;
+  background: url("images/pic0117.jpg") 50% -70px / 100% auto no-repeat;
+  opacity: 0.6;
+  pointer-events: none;
+  /* 左右與下緣淡出，臉部（上半）維持清楚 */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 22%, #000 78%, transparent),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 48%, transparent 92%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 22%, #000 78%, transparent),
+    linear-gradient(to bottom, transparent 0, #000 16%, #000 48%, transparent 92%);
+  mask-composite: intersect;
+}
+.rsvp > * { position: relative; }
+@media (max-width: 600px) {
+  .rsvp { padding-top: 215px; }
+  .rsvp::before {
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+    height: 360px;
+    background-position: 50% -30px;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 48%, transparent 92%);
+    mask-image:
+      linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+      linear-gradient(to bottom, transparent 0, #000 16%, #000 48%, transparent 92%);
+  }
+}
+
