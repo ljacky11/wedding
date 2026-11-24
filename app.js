@@ -376,6 +376,7 @@ if ("serviceWorker" in navigator) {
   let index = Math.min(Math.max(CONFIG.carouselStartIndex || 0, 0), slides.length - 1);
   let timer = null;
   let inView = false; // 輪播區是否在畫面內：進入畫面才開始自動換張
+  let userStopped = false; // 使用者主動滑動／點箭頭／點圓點後，不再自動換張，停在他選的那張
 
   // 動態產生投影片與圓點
   slides.forEach((photo, i) => {
@@ -431,12 +432,15 @@ if ("serviceWorker" in navigator) {
   function go(i, userAction) {
     index = (i + slides.length) % slides.length;
     render();
-    if (userAction) restart();
+    if (userAction) {
+      userStopped = true;
+      clearInterval(timer);
+    }
   }
   function step(n) { go(index + n, true); }
 
   function start() {
-    if (slides.length <= 1 || !inView) return;
+    if (slides.length <= 1 || !inView || userStopped) return;
     timer = setInterval(
       () => go(index + 1, false),
       (CONFIG.carouselIntervalSec || 4) * 1000
@@ -449,13 +453,19 @@ if ("serviceWorker" in navigator) {
 
   // 觸控滑動
   let startX = null;
-  viewport.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  // 手指按著時先暫停自動換張；真的左右滑了就停止自動播放（停在使用者選的那張）
+  viewport.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    clearInterval(timer);
+  }, { passive: true });
   viewport.addEventListener("touchend", (e) => {
     if (startX === null) return;
     const dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
     startX = null;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    else restart(); // 只是點一下或上下捲動：照常繼續自動換張
   });
+  viewport.addEventListener("touchcancel", () => { startX = null; restart(); }, { passive: true });
 
   // 分頁切走時暫停，回來再繼續（省電）
   document.addEventListener("visibilitychange", () => {
