@@ -35,8 +35,8 @@ const CONFIG = {
     { src: "images/picjurassic.jpg", small: "images/picjurassic-sm.jpg", landscape: true, bg: "images/picjurassic-bg.jpg" }, // 近正方形，整張顯示
   ],
 
-  // ?cover=mom 版的輪播順序（用檔名 picXXXX 的 XXXX；沒列到的照片會接在最後面）
-  weddingOrderMom: ["0100", "0117", "0148", "0177", "0167", "0180", "0006", "0018", "0015", "0013", "0071", "0063", "0021-0035", "space", "jurassic"],
+  // ?cover=mom 版的輪播：只放這幾張，依此順序（用檔名 picXXXX 的 XXXX）
+  weddingOrderMom: ["0100", "0148", "0177", "0167", "0180", "0006", "0013", "0063"],
 
   // 輪播自動切換秒數
   carouselIntervalSec: 1.5,
@@ -405,8 +405,7 @@ function cleanSiteUrl() {
     const keyOf = (p) => (p.src.match(/pic([^/]+)\.jpg$/) || [])[1];
     const byKey = new Map(slides.map((p) => [keyOf(p), p]));
     const ordered = CONFIG.weddingOrderMom.map((k) => byKey.get(k)).filter(Boolean);
-    const rest = slides.filter((p) => !ordered.includes(p));
-    slides = ordered.concat(rest);
+    if (ordered.length) slides = ordered;
   }
   let index = Math.min(Math.max(CONFIG.carouselStartIndex || 0, 0), slides.length - 1);
   let timer = null;
