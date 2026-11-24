@@ -1209,3 +1209,23 @@ section { padding: 72px 20px; }
   color: var(--ink);
 }
 
+/* ===== 另一版封面（網址 ?cover=mom）：韓式黑底坐姿照 0117 ===== */
+html[data-cover="mom"] .hero {
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0.55) 100%),
+    url("images/hero-0117.jpg") 50% -40px / cover no-repeat,
+    #0d0d0f;
+}
+@media (max-width: 600px) {
+  html[data-cover="mom"] .hero {
+    background:
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.15) 0,
+        rgba(0,0,0,0) calc(100vw * 0.45),
+        rgba(13,13,15,0.55) calc(100vw * 1.1),
+        #0d0d0f calc(100vw * 1.5)),
+      url("images/hero-0117-sm.jpg") center top / 100% auto no-repeat,
+      #0d0d0f;
+  }
+}
+

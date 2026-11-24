@@ -198,6 +198,14 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+/* 分享／QR code 用的網址：去掉 #hash 和 ?cover=…，讓別人收到的是預設封面 */
+function cleanSiteUrl() {
+  const u = new URL(window.location.href);
+  u.searchParams.delete("cover");
+  u.hash = "";
+  return u.toString();
+}
+
 /* ---------- 加到主畫面提示 ----------
    各平台行為：
    - Android / 桌機 Chrome、Edge：支援 beforeinstallprompt，事件觸發後才顯示可點的按鈕
@@ -295,7 +303,7 @@ if ("serviceWorker" in navigator) {
   if (!shareBtn) return;
 
   // 分享內容：標題、訊息、網址（網址用目前頁面，部署後就是線上網址）
-  const shareUrl = window.location.href.split("#")[0];
+  const shareUrl = cleanSiteUrl();
   const shareTitle = "弘祥 & 岳玲 的婚禮網站";
   const shareText =
     "弘祥 & 岳玲的婚禮資訊都在這裡 ♡\n2027.05.15（六）中午 12:00　皇家薇庭婚宴會館\n交通、停車都有說明，也麻煩一起填寫出席回覆喔：";
@@ -524,7 +532,7 @@ if ("serviceWorker" in navigator) {
   const box = document.getElementById("inviteQr");
   if (!box || typeof qrcode === "undefined") return;
 
-  const url = window.location.href.split("#")[0];
+  const url = cleanSiteUrl();
   try {
     const qr = qrcode(0, "M"); // type 0 = 自動版本，M = 中等容錯
     qr.addData(url);
